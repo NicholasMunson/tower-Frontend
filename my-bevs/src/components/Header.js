@@ -1,17 +1,16 @@
-import React, {Component} from 'react';
-import Nav from './CustomNavBar'
+// import React, {Component} from 'react';
+// import Nav from './CustomNavBar'
 
-class Header extends Component {
-    render() {
-        return ( 
-            <div className='nav-container'>
-            <p>myBevs</p>
-            <Nav />
-        </div>
-            
-        )
-    }
-    
+import React from 'react';
+import CustomNavBar from './CustomNavBar'
+
+function Header(){
+    return ( 
+    <div>   
+        <h1>Hello</h1>
+        <CustomNavBar />
+    </div>  
+    )
 }
+    
 export default Header
-
