@@ -8,7 +8,7 @@ class CustomNavBar extends Component {
                 <h1 className="my-bevs-title">
                     myBevs
                 </h1>
-                <Navbar default="default" collapseOnSelect="collapseOnSelect">
+                {/* <Navbar default="default" collapseOnSelect="collapseOnSelect">
                     <Navbar.Header>
                         <Navbar.Brand>
                             <Link to='/'>Drink Control</Link>
@@ -28,7 +28,7 @@ class CustomNavBar extends Component {
                             </NavItem>
                         </Nav>
                     </Navbar.Collapse>
-                </Navbar>
+                </Navbar> */}
             </div>
         )
     }
