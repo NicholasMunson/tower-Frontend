@@ -13,12 +13,14 @@ class App extends Component {
         return (
             <Router>
                 <div className='app-container'>
-                    <Route exact path='/' component={Header} />
+                    {/* <Route exact path='/' component={Header} /> */}
+                    {/* <Header /> */}
                     <Route path='/about' component={About} />
                     <Route path='/beer-list' component={BeerList} />
                     <Route path='/wine-list' component={WineList} />
                     <Route path='/add' component={Add} />
-                    <Route exact path='/' component={Footer} />
+                    {/* <Route exact path='/' component={Footer} /> */}
+                    {/* <Footer /> */}
                     <p>This is the APP level</p>
                 </div>
             </Router>

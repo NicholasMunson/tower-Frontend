@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-function WineList(props) {
-    return (
-        <p>Hello for the wine Page</p>
-    )
-    
+class WineList extends Component {
+    render() {
+        return (
+            <p>Hello for the WineList Page</p>
+        )
+    }
 
 }
 
