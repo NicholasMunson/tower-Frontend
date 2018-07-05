@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Header(props) {
+function BeerList(props) {
     return (
         <p>Hello for the Beer Page</p>
     )
@@ -8,4 +8,4 @@ function Header(props) {
 
 }
 
-export default Header
+export default BeerList

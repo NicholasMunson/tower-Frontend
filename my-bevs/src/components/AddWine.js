@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-function Header(props) {
-    return (
-        <p>Hello for the Wine Page</p>
-    )
-    
+class AddWine extends Component {
+    render() {
+        return (
+            <p>Hello for the Add Page</p>
+        )
+    }
 
 }
 
-export default Header
+export default AddWine
