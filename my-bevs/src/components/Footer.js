@@ -5,7 +5,7 @@ class Footer extends Component {
     render() {
         return ( 
             <div className='footer-container'>
-                <p>myBevs</p>
+                <small>myBevs® 2018</small>
             </div>
             
         )
