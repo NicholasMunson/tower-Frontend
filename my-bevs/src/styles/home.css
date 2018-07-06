@@ -1,0 +1,7 @@
+.btn-toolbar{
+    display: flex;
+    justify-content: center;
+}
+.btn{
+    padding:1%
+}

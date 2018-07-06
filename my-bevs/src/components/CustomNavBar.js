@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Nav, NavItem, Button } from 'react-bootstrap'
+import { Nav, NavItem } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import {slide as Menu} from 'react-burger-menu'
 import '../styles/hamburger.css'
@@ -13,9 +13,9 @@ class CustomNavBar extends Component {
                     <NavItem 
                             eventKey={0} 
                             componentClass={Link} 
-                            href='/' 
-                            to='/' 
-                            className='nav-item'>                            onClick={this.props.textColorChange}>
+                            href='/home' 
+                            to='/home' 
+                            className='nav-item'>                 
                             Home
                         </NavItem>
                         <NavItem 
@@ -23,7 +23,7 @@ class CustomNavBar extends Component {
                             componentClass={Link} 
                             href='/beer-list' 
                             to='/beer-list' 
-                            className='nav-item'>                            onClick={this.props.textColorChange}>
+                            className='nav-item'>                          
                             BeerList
                         </NavItem>
                         <NavItem 
