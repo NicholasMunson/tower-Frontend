@@ -51,18 +51,9 @@
     display: inline-block;
 }
 
-/* Styling of overlay */
-.bm-overlay {
-    position: none;
-}
-
 a {
     text-decoration-line: none;
     color: white;
-    /* font-size: 6vmin; */
-    font-size: 6vmax;
+    font-size: 3vmax;
 }
 
-ul{
-    list-style-type: none;
-}

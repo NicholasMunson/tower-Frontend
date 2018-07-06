@@ -32,6 +32,7 @@ class App extends Component {
             <Router>
                 <div className='app-container'>
                     <Header textColorChange={this.state.textColorChange}/>
+                    <Route path='/' component={App} />
                     <Route path='/about' component={About} />
                     <Route path='/beer-list' component={BeerList} />
                     <Route path='/wine-list' component={WineList} />
