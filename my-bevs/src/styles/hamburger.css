@@ -8,7 +8,6 @@
     position: fixed;
     width: 36px;
     height: 30px;
-    /* left: 95%; */
     right: 3.5%;
     top: 3.5%;
 }
@@ -44,7 +43,7 @@
 /* Wrapper for item list */
 .bm-item-list {
     color: #b8b7ad;
-    padding: 0.8em;
+    padding: -0.2em;
 }
 
 /* Individual item */
@@ -54,10 +53,16 @@
 
 /* Styling of overlay */
 .bm-overlay {
-    background: none;
+    position: none;
 }
 
 a {
     text-decoration-line: none;
     color: white;
+    /* font-size: 6vmin; */
+    font-size: 6vmax;
+}
+
+ul{
+    list-style-type: none;
 }

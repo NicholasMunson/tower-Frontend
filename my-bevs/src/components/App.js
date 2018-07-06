@@ -6,15 +6,32 @@ import BeerList from './BeerList'
 import WineList from './WineList'
 import Add from './Add'
 import Footer from './Footer'
-import CustomNavBar from './CustomNavBar'
 import '../styles/App.css'
 
 class App extends Component {
+    constructor(props){
+        super(props)
+            this.state={
+            textColor: ""
+        }
+        this.textColorChange = this.textColorChange.bind(this)
+    }
+
+    textColorChange = (event) => {
+    this.setState({
+        textColor: event.target.value
+
+    })
+    console.log("event happend");
+    
+    }
+
+    
     render() {
         return (
             <Router>
                 <div className='app-container'>
-                    <Header />
+                    <Header textColorChange={this.state.textColorChange}/>
                     <Route path='/about' component={About} />
                     <Route path='/beer-list' component={BeerList} />
                     <Route path='/wine-list' component={WineList} />
