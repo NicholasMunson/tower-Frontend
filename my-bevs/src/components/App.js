@@ -8,27 +8,40 @@ import Add from './Add'
 import Footer from './Footer'
 import Home from './Home'
 import '../styles/App.css'
+const URL = "https://mybevs.herokuapp.com"
 
 class App extends Component {
-    // constructor(props){
-    //     super(props)
-    //         this.state={
-    //         textColor: ""
-    //     }
-       
-    // }
-
+    constructor(props){
+        super(props)
+        this.state ={
+            beerData:[],
+            wineData:[]
+        }
+    
+    }
+    componentDidMount(){
+        fetch(`${URL}/beer`)
+        .then(response => response.json())
+        .then(beer => this.setState({beerData:beer}))
+        // .then(fetch(`${URL}/wine`))
+        // // .then(response => response.json())
+        // .then(wine => this.setState({wineData:wine}))
+    }
 
 
     
     render() {
+        console.log(this.state);
+        
+        
         return (
             <Router>
                 <div className='app-container'>
+                
                     <Header />
-                    <Route path='/home' component={Home} />
+                    <Route path='/home' component= { () => <Home beerData={this.state.beerData}/>}/>  
                     <Route path='/about' component={About} />
-                    <Route path='/beer-list' component={BeerList} />
+                    <Route path='/beer-list' component={ () =>  <BeerList beerData={this.state.beerData}  />} />
                     <Route path='/wine-list' component={WineList} />
                     <Route path='/add' component={Add} />
                     <Footer />
