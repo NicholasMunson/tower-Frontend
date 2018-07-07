@@ -8,7 +8,7 @@ import Add from './Add'
 import Footer from './Footer'
 import Home from './Home'
 import '../styles/App.css'
-const URL = "https://mybevs.herokuapp.com"
+const URL = "https://mybevs.herokuapp.com" 
 
 class App extends Component {
     constructor(props){
@@ -22,18 +22,17 @@ class App extends Component {
     componentDidMount(){
         fetch(`${URL}/beer`)
         .then(response => response.json())
-        .then(beer => this.setState({beerData:beer}))
-        // .then(fetch(`${URL}/wine`))
-        // // .then(response => response.json())
-        // .then(wine => this.setState({wineData:wine}))
+        .then(beer => this.setState({beerData:beer})),
+        fetch(`${URL}/wine`)
+        .then(response => response.json())
+        .then(wine => this.setState({wineData:wine}))
+
     }
 
 
     
     render() {
-        console.log(this.state);
-        
-        
+    
         return (
             <Router>
                 <div className='app-container'>
