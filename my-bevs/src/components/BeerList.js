@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-
+import BeerCard from '../components/BeerCard.js'
 class BeerList extends Component {
     constructor(props){
         super(props)
-        console.log(props);
+        
     }
     
 
@@ -13,7 +13,10 @@ class BeerList extends Component {
 
     render() {
         return (
-            <p>Hello for the BeerList Page</p>
+            <React.Fragment>
+                <p>Hello for the BeerList Page</p>
+                <BeerCard beerData={this.props.beerData.beer}/> 
+            </React.Fragment>
         )
     }
 
