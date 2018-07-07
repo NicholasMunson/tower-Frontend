@@ -1,25 +1,16 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import BeerCard from '../components/BeerCard.js'
-class BeerList extends Component {
-    constructor(props){
-        super(props)
-        
-    }
-    
 
 
-
-
-
-    render() {
+class BeerList extends React.Component   {
+    render(){
         return (
-            <React.Fragment>
+            <Fragment>
                 <p>Hello for the BeerList Page</p>
-                <BeerCard beerData={this.props.beerData.beer}/> 
-            </React.Fragment>
+                <BeerCard beerData={this.props.beerData}/>
+            </Fragment>
         )
     }
-
 }
 
 export default BeerList

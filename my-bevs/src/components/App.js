@@ -19,10 +19,14 @@ class App extends Component {
         }
     
     }
-    componentDidMount(){
+    componentDidMount = () => {
         fetch(`${URL}/beer`)
         .then(response => response.json())
-        .then(beer => this.setState({beerData:beer})),
+        .then(beer => {
+            this.setState({
+                beerData:beer
+            })
+        }),
         fetch(`${URL}/wine`)
         .then(response => response.json())
         .then(wine => this.setState({wineData:wine}))
@@ -32,11 +36,10 @@ class App extends Component {
 
     
     render() {
-    
         return (
             <Router>
                 <div className='app-container'>
-                
+                    
                     <Header />
                     <Route path='/home' component= { () => <Home beerData={this.state.beerData}/>}/>  
                     <Route path='/about' component={About} />

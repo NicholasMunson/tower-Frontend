@@ -1,9 +1,13 @@
 import React from 'react'
 
+
+
 const BeerCard = (props) => {
-    console.log(props.beerData)
+    const beers = props.beerData.beer.map(beers => )
+    
     return (
-        <div className>
+        <div className='beer-card-container'>
+
         </div>
     )
 

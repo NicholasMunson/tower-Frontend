@@ -3,6 +3,7 @@ import { Nav, NavItem } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import {slide as Menu} from 'react-burger-menu'
 import '../styles/hamburger.css'
+
 class CustomNavBar extends Component {
 
     render() {
