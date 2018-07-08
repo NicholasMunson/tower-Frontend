@@ -1,16 +1,14 @@
-import React, {Component, Fragment} from 'react';
+import React from 'react'
 import BeerCard from '../components/BeerCard.js'
 
-
-class BeerList extends React.Component   {
-    render(){
-        return (
-            <Fragment>
-                <p>Hello for the BeerList Page</p>
-                <BeerCard beerData={this.props.beerData}/>
-            </Fragment>
-        )
-    }
+const BeerList = (props) => {
+    const beerCard = props.beerData.map(beer => <BeerCard beer={beer} key={beer.id}/>)
+    console.log(beerCard)
+    return(
+        <div className="beer-card-container">
+        {[beerCard]}
+        </div>
+    )
 }
 
 export default BeerList
