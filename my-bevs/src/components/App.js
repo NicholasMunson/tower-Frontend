@@ -24,7 +24,7 @@ class App extends Component {
         .then(response => response.json())
         .then(beer => {
             this.setState({
-                beerData:beer
+                beerData:beer.beer
             })
         }),
         fetch(`${URL}/wine`)
@@ -39,7 +39,7 @@ class App extends Component {
     
     render() {
         const wines = this.state.wineData
-        const beers = this.state.beerData.beer
+        const beers = this.state.beerData
         // console.log(wines);
         
         return (
