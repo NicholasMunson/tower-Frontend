@@ -19,7 +19,7 @@ class App extends Component {
         }
     
     }
-    componentDidMount = () => {
+    componentWillMount = () => {
         fetch(`${URL}/beer`)
         .then(response => response.json())
         .then(beer => {
@@ -29,28 +29,35 @@ class App extends Component {
         }),
         fetch(`${URL}/wine`)
         .then(response => response.json())
-        .then(wine => this.setState({wineData:wine}))
+        .then(wine => this.setState({
+            wineData:wine.wine
+        }))
 
     }
 
-
+    
     
     render() {
+        const wines = this.state.wineData
+        const beers = this.state.beerData.beer
+        // console.log(wines);
+        
         return (
             <Router>
                 <div className='app-container'>
-                    
+                    {/* {this.state.wineData.map(wines => console.log(wines.style))} */}
                     <Header />
-                    <Route path='/home' component= { () => <Home beerData={this.state.beerData}/>}/>  
+                    <Route path='/home' component= { () => <Home beerData={beers} wineData={wines}/>}/>  
                     <Route path='/about' component={About} />
-                    <Route path='/beer-list' component={ () =>  <BeerList beerData={this.state.beerData}  />} />
-                    <Route path='/wine-list' component={WineList} />
+                    <Route path='/beer-list' component={ () =>  <BeerList beerData={beers}  />} />
+                    <Route path='/wine-list' component={ () => <WineList wineData={wines} />} />
                     <Route path='/add' component={Add} />
                     <Footer />
                 </div>
             </Router>
         )
-    }
+    } 
+    
 }
 
 export default App;

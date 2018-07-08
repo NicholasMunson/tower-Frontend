@@ -1,12 +1,31 @@
-import React, {Component} from 'react';
+// import React, {Component} from 'react';
+import React from 'react'
+import WineCard from '../components/WineCard.js'
 
-class WineList extends Component {
-    render() {
-        return (
-            <p>Hello for the WineList Page</p>
-        )
-    }
+const WineList = (props) => {
+    const wineCard = props.wineData.map(wine => <WineCard wine={wine} key={wine.id}/>)
+    console.log(wineCard);
+    
 
+    return(
+
+        [wineCard]
+
+    )
 }
+
+
+
+
+// class WineList extends Component {
+//     render() {
+//         const wines = this.props.wineData
+//         console.log(wines)
+//         return (
+//             <p>Hello for the WineList Page</p>
+//         )
+//     }
+
+// }
 
 export default WineList
