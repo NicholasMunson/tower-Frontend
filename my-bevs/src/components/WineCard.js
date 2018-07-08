@@ -1,4 +1,5 @@
 import React from 'react'
+import {Button, Col, Row, Grid} from 'react-bootstrap'
 
 const WineCard = (props) => {
     return (
@@ -9,6 +10,14 @@ const WineCard = (props) => {
             <p className="ABV">ABV: {props.wine.ABV}</p>
             <p className="rating">Rating: {props.wine.rating}</p>
             <p className="notes">Notes: {props.wine.notes}</p>
+            <div className="btn-container">
+                <Grid>
+                    <Row xs={12} md={12} className="btn-row">
+                        <Button bsStyle="primary"> Edit </Button>
+                        <Button bsStyle="danger">Delete</Button>
+                    </Row>
+                </Grid>
+            </div>
         </div>
     )
 }

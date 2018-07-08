@@ -45,7 +45,6 @@ class App extends Component {
         return (
             <Router>
                 <div className='app-container'>
-                    {/* {this.state.wineData.map(wines => console.log(wines.style))} */}
                     <Header />
                     <Route path='/home' component= { () => <Home beerData={beers} wineData={wines}/>}/>  
                     <Route path='/about' component={About} />
