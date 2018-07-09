@@ -1,3 +1,8 @@
 .app-container, body{
-    height: 100%;
+    height: 100vh;
+    scroll-behavior: unset;
+}
+.app-container{
+    display: flex;
+    flex-direction: column;
 }

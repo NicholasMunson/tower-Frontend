@@ -20,7 +20,7 @@ class App extends Component {
         }
     
     }
-    componentWillMount = () => {
+    componentDidMount = () => {
         fetch(`${URL}/beer`)
         .then(response => response.json())
         .then(beer => {

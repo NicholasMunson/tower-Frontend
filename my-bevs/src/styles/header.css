@@ -1,4 +1,5 @@
 .page-header{
+    position: sticky;
     color: blue;
     background-color: #b3b3b3;
     margin: 0;

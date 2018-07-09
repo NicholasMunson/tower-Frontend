@@ -5,3 +5,6 @@
 .btn{
     padding:1%
 }
+.home-container{
+    overflow: scroll;
+}

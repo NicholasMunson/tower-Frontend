@@ -1,6 +1,6 @@
 import React from 'react'
 import PieChart from 'react-minimal-pie-chart'
-
+import '../styles/pie-chart-home.css'
 
 const PieChartHome = (props) => {
 
@@ -8,14 +8,30 @@ const PieChartHome = (props) => {
     let wineLength = props.wineData.length
 
     const dumbDumbData = [
-        { value:beerLength, color:'#E38627'},
-        { value:wineLength, color:'#dddd'},
+        {
+            value: beerLength,
+            color: '#E38627'
+        }, {
+            value: wineLength,
+            color: '#9932CC'
+        }
     ]
-    if(beerLength == Number){
-    return(
-    <PieChart data={dumbDumbData}  />
+    return (
+        <section className="pie-chart-container"> 
+            <div className="color-key-container"> 
+                <div className="key-container"> 
+                    <p>Wine</p>
+                    <div className="color-key wine"></div>
+                </div>
+                <div className="key-container"> 
+                    <p>Beer</p>
+                    <div className="color-key beer"></div>
+                </div>
+            </div>
+            <PieChart className="pie-chart" data={dumbDumbData}/>
+        </section>
     )
-}
+
 }
 
 export default PieChartHome

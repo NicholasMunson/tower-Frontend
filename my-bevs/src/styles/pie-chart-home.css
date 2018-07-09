@@ -1,0 +1,36 @@
+.color-key {
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgba(0, 0, 0, .2); 
+    padding: 15%;
+    margin: 5%;
+}
+
+.wine{
+    background: #9932CC;
+}
+
+.beer{
+background: #E38627;
+}
+
+.color-key-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.key-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.pie-chart{
+    align-content: center;
+    padding: 5% 10%;
+    /* transform: rotate(-90deg) */
+}
+
+.pie-chart-container{
+    align-items: center;
+    z-index: -111;
+}
