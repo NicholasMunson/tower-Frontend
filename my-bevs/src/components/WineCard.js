@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Col, Row, Grid} from 'react-bootstrap'
+import { Button, Row, Grid } from 'react-bootstrap'
 
 const WineCard = (props) => {
     return (

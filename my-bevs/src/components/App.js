@@ -19,14 +19,14 @@ class App extends Component {
         }
     
     }
-    componentWillMount = () => {
+    componentDidMount = () => {
         fetch(`${URL}/beer`)
         .then(response => response.json())
         .then(beer => {
             this.setState({
                 beerData:beer.beer
             })
-        }),
+        })
         fetch(`${URL}/wine`)
         .then(response => response.json())
         .then(wine => this.setState({
@@ -42,15 +42,17 @@ class App extends Component {
         
         return (
             <Router>
-                <div className='app-container'>
-                    <Header />
-                    <Route path='/home' component= { () => <Home beerData={beers} wineData={wines}/>}/>  
-                    <Route path='/about' component={About} />
-                    <Route path='/beer-list' component={ () =>  <BeerList beerData={beers}  />} />
-                    <Route path='/wine-list' component={ () => <WineList wineData={wines} />} />
-                    <Route path='/add' component={Add} />
-                    <Footer />
-                </div>
+                <React.Fragment> 
+                    <div className='app-container'>
+                        <Header />
+                        <Route path='/home' component= { () => <Home beerData={beers} wineData={wines}/>}/>  
+                        <Route path='/about' component={About} />
+                        <Route path='/beer-list' component={ () =>  <BeerList beerData={beers}  />} />
+                        <Route path='/wine-list' component={ () => <WineList wineData={wines} />} />
+                        <Route path='/add' component={Add} />
+                    </div>
+                        <Footer />
+                </React.Fragment>
             </Router>
         )
     } 
