@@ -8,6 +8,7 @@ import Add from './Add'
 import Footer from './Footer'
 import Home from './Home'
 import '../styles/App.css'
+import PieChartHome from './PieChartHome.js'
 const URL = "https://mybevs.herokuapp.com" 
 
 class App extends Component {
@@ -19,7 +20,7 @@ class App extends Component {
         }
     
     }
-    componentDidMount = () => {
+    componentWillMount = () => {
         fetch(`${URL}/beer`)
         .then(response => response.json())
         .then(beer => {
@@ -45,7 +46,7 @@ class App extends Component {
                 <React.Fragment> 
                     <div className='app-container'>
                         <Header />
-                        <Route path='/home' component= { () => <Home beerData={beers} wineData={wines}/>}/>  
+                        <Route path='/home' component= { () => <Home beerData={beers} wineData={wines} component={ () => <PieChartHome beerData={beers} wineData={wines}/>}/>}/>  
                         <Route path='/about' component={About} />
                         <Route path='/beer-list' component={ () =>  <BeerList beerData={beers}  />} />
                         <Route path='/wine-list' component={ () => <WineList wineData={wines} />} />
