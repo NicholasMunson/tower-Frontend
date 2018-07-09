@@ -1,5 +1,6 @@
 import React from 'react'
 import WineCard from '../components/WineCard.js'
+import '../styles/card-container.css'
 
 const WineList = (props) => {
     const wineCard = props.wineData.map(wine => <WineCard wine={wine} key={wine.id}/>)
@@ -7,7 +8,7 @@ const WineList = (props) => {
     
 
     return(
-        <div className="wine-card-container">
+        <div className="card-container">
         {[wineCard]}
         </div>
 
