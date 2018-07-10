@@ -39,7 +39,7 @@ class App extends Component {
     render() {
         const wines = this.state.wineData
         const beers = this.state.beerData
-        // console.log(wines);
+        console.log(wines, beers);
         
         return (
             <Router>
