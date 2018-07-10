@@ -34,3 +34,7 @@ background: #E38627;
     align-items: center;
     z-index: -111;
 }
+.home-container{
+    padding-top: 16%;
+    padding-bottom: 13%;
+}

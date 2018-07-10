@@ -1,7 +1,7 @@
 import React from 'react'
+import { Button, Row, Grid } from 'react-bootstrap'
 
 const BeerCard = (props) => {
-    console.log(props.beer)
     return (
         <div className="beer-card">
             <p className="brewery">Brewery: {props.beer.brewery}</p>
