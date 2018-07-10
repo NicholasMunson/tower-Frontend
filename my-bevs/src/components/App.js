@@ -16,7 +16,8 @@ class App extends Component {
         super(props)
         this.state ={
             beerData:[],
-            wineData:[]
+            wineData:[],
+            isLoaded: false
         }
     
     }
@@ -39,14 +40,14 @@ class App extends Component {
     render() {
         const wines = this.state.wineData
         const beers = this.state.beerData
-        console.log(wines, beers);
+        const isLoaded = this.state.isLoaded 
         
         return (
             <Router>
                 <React.Fragment> 
                     <div className='app-container'>
                         <Header />
-                        <Route path='/home' component= { () => <Home beerData={beers} wineData={wines} component={ () => <PieChartHome beerData={beers} wineData={wines}/>}/>}/>  
+                        <Route path='/home' component= { () => <Home beerData={beers} wineData={wines} isLoaded={isLoaded} component={ () => <PieChartHome beerData={beers} wineData={wines}/>}/>}/>  
                         <Route path='/about' component={About} />
                         <Route path='/beer-list' component={ () =>  <BeerList beerData={beers}  />} />
                         <Route path='/wine-list' component={ () => <WineList wineData={wines} />} />

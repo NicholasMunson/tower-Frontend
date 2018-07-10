@@ -10,6 +10,14 @@ const BeerCard = (props) => {
             <p className="ABV">ABV: {props.beer.ABV}</p>
             <p className="rating">Rating: {props.beer.rating}</p>
             <p className="notes">Notes: {props.beer.notes}</p>
+            <div className="btn-container">
+                <Grid>
+                    <Row xs={12} md={12} className="btn-row">
+                        <Button bsStyle="primary"> Edit </Button>
+                        <Button bsStyle="danger">Delete</Button>
+                    </Row>
+                </Grid>
+            </div>
         </div>
     )
 }

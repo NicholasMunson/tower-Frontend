@@ -5,11 +5,12 @@ import PieChartHome from './PieChartHome.js'
 const Home = (props) => {
     const wineData = props.wineData
     const beerData = props.beerData
+    const isLoaded = props.isLoaded
     return (
         <div className='home-container'>
             <p>Welcome to the home console</p>
             <p>lorem</p>
-            <PieChartHome wineData={wineData} beerData={beerData}/>
+            { !isLoaded ? <PieChartHome wineData={wineData} beerData={beerData}/> : <h2>Loading...</h2> }
         </div>
     )
 }

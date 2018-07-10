@@ -3,8 +3,6 @@ import { FormGroup, FormControl, Button } from 'react-bootstrap'
 class AddBeer extends Component {
     constructor(props){
         super(props)
-
-        // this.handleChange = this.handleChange.bind(this);
         
         this.state = {
             brewery: "",
@@ -16,10 +14,31 @@ class AddBeer extends Component {
 
         }
     }
+
+    postData = (event) => {
+        event.preventDefault()
+        const body = JSON.stringify(this.state)
+        console.log(body);
+        
+        fetch("https://mybevs.herokuapp.com/beer",{
+            method: "POST",
+            body: body,
+            headers: new Headers({
+                "content-type": "application/json"
+            })
+        })
+        .then(response => response.json())
+        .then(posted => {
+            console.log(posted)
+        })
+
+    }    
     
     handleChange = (event) => {
+
         const key = event.target.name
-        const value = event.target.value
+        const value = event.target.value  
+
         this.setState({
             [key]: value
         })
@@ -29,7 +48,7 @@ class AddBeer extends Component {
 
     render() {
         return (
-            <form>
+            <form onSubmit={this.postData}>
                 <FormGroup>
                     <FormControl
                         type="text"

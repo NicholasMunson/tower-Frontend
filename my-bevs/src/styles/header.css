@@ -1,7 +1,11 @@
 .page-header{
-    position: sticky;
+    position: absolute;
+    width: 100%;
     color: blue;
     background-color: #b3b3b3;
     margin: 0;
     padding: 5px;
+}
+body{
+    overflow: hidden;
 }
