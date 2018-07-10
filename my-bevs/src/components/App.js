@@ -37,6 +37,12 @@ class App extends Component {
 
     }
 
+    handleBeerDelete(event, id){
+        event.preventDefault()
+        console.log(id)
+
+    }
+
     render() {
         const wines = this.state.wineData
         const beers = this.state.beerData
@@ -49,7 +55,7 @@ class App extends Component {
                         <Header />
                         <Route path='/home' component= { () => <Home beerData={beers} wineData={wines} isLoaded={isLoaded} component={ () => <PieChartHome beerData={beers} wineData={wines}/>}/>}/>  
                         <Route path='/about' component={About} />
-                        <Route path='/beer-list' component={ () =>  <BeerList beerData={beers}  />} />
+                        <Route path='/beer-list' component={ () =>  <BeerList beerData={beers} handleBeerDelete={this.handleBeerDelete}  />} />
                         <Route path='/wine-list' component={ () => <WineList wineData={wines} />} />
                         <Route path='/add' component={Add} />
                     </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Row, Grid } from 'react-bootstrap'
 
 const BeerCard = (props) => {
+
     return (
         <div className="beer-card">
             <p className="brewery">Brewery: {props.beer.brewery}</p>
@@ -14,7 +15,7 @@ const BeerCard = (props) => {
                 <Grid>
                     <Row xs={12} md={12} className="btn-row">
                         <Button bsStyle="primary"> Edit </Button>
-                        <Button bsStyle="danger">Delete</Button>
+                        <Button bsStyle="danger" onClick={ (event) => props.handleBeerDelete(event , props.beer.id)} >Delete</Button>
                     </Row>
                 </Grid>
             </div>

@@ -1,3 +1,13 @@
+.home-container{
+    padding-top: 16%;
+    padding-bottom: 13%;
+    align-content: center;
+    text-align: center;
+}
+.welcome-text{
+    padding: 0% 10%;
+}
+
 .color-key {
     width: 15px;
     height: 15px;
@@ -33,8 +43,4 @@ background: #E38627;
 .pie-chart-container{
     align-items: center;
     z-index: -111;
-}
-.home-container{
-    padding-top: 16%;
-    padding-bottom: 13%;
 }

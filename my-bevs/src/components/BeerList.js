@@ -3,8 +3,9 @@ import BeerCard from '../components/BeerCard.js'
 import '../styles/card-container.css'
 
 const BeerList = (props) => {
-    const beerCard = props.beerData.map(beer => <BeerCard beer={beer} key={beer.id}/>)
-    console.log(beerCard)
+    console.log(props.handleBeerDelete);
+    
+    const beerCard = props.beerData.map(beer => <BeerCard handleBeerDelete={props.handleBeerDelete} beer={beer} key={beer.id}/>)
     return(
         <div className="card-container">
         {[beerCard]}
