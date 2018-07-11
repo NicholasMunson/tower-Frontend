@@ -18,12 +18,6 @@ class App extends Component {
             beerData:[],
             wineData:[],
             isLoaded: false,
-            brewery: "",
-            name: "",
-            style: "",
-            rating: "",
-            ABV: "",
-            notes: ""
         }
     
     }
@@ -44,39 +38,6 @@ class App extends Component {
         .then(wine => this.setState({
             wineData:wine.wine
         }))
-    }
-
-    postData = (event) => {
-        console.log("from post data")
-        event.preventDefault()
-        const body = JSON.stringify(this.state)
-        
-        fetch("https://mybevs.herokuapp.com/beer",{
-            method: "POST",
-            body: body,
-            headers: new Headers({
-                "content-type": "application/json"
-            })
-        })
-        .then(response => response.json())
-        .then(posted => {
-            posted:"posted" 
-        })
-        .catch(err => {
-            console.error(err)
-        })    
-        
-    }    
-
-    handleChange = (event) => {
-
-        const key = event.target.name
-        const value = event.target.value  
-
-        this.setState({
-            [key]: value
-        })
-
     }
 
     handleBeerDelete = (event, id) =>{

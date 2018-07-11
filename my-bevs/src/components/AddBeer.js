@@ -5,38 +5,37 @@ class AddBeer extends Component {
     constructor(props){
         super(props)
         
-        // this.state = {
-        //     brewery: "",
-        //     name: "",
-        //     style: "",
-        //     rating: "",
-        //     ABV: "",
-        //     notes: ""
+        this.state = {
+            brewery: "",
+            name: "",
+            style: "",
+            rating: "",
+            ABV: "",
+            notes: ""
 
-        // }
+        }
     }
 
-    // postData = (event) => {
-    //     event.preventDefault()
-    //     const body = JSON.stringify(this.state)
-    //     console.log(body);
+    handleSubmit = (event) => {
+        event.preventDefault()
+        const body = JSON.stringify(this.state)
         
-    //     fetch("https://mybevs.herokuapp.com/beer",{
-    //         method: "POST",
-    //         body: body,
-    //         headers: new Headers({
-    //             "content-type": "application/json"
-    //         })
-    //     })
-    //     .then(response => response.json())
-    //     .then(posted => {
-    //         posted:"posted" 
-    //     })
-    //     .catch(err => {
-    //         console.error(err)
-    //     })    
+        fetch("https://mybevs.herokuapp.com/beer",{
+            method: "POST",
+            body: body,
+            headers: new Headers({
+                "content-type": "application/json"
+            })
+        })
+        .then(response => response.json())
+        .then(posted => {
+                posted
+        })
+        .catch(err => {
+            console.error(err)
+        })    
         
-    // }    
+    }    
     
     // resetState = () => {
     //     this.setState = {
@@ -50,45 +49,42 @@ class AddBeer extends Component {
     //     }
     // }
     
-    // handleChange = (event) => {
-
-    //     const key = event.target.name
-    //     const value = event.target.value  
-
-    //     this.setState({
-    //         [key]: value
-    //     })
-
-    // }
-
+    handleChange = (event) => {
+        const key = event.target.name
+        const value = event.target.value  
+        this.setState({
+            [key]: value
+        })
+    }
+y
     render() {
         return (
-            <form onSubmit={this.props.postData}  className="form-container">
+            <form onSubmit={this.handleSubmit}  className="form-container">
                 <FormGroup>
                     <FormControl
                         type="text"
-                        value={this.props.brewery}
+                        value={this.brewery}
                         placeholder="Brewery Name"
                         onChange={this.handleChange}
                         required
                         name="brewery"/>
                     <FormControl
                         type="text"
-                        value={this.props.name}
+                        value={this.name}
                         placeholder="Beer Name"
                         onChange={this.handleChange}
                         required
                         name="name"/>
                     <FormControl
                         type="text"
-                        value={this.props.style}
+                        value={this.style}
                         placeholder="Style"
                         onChange={this.handleChange}
                         required
                         name="style"/>
                     <FormControl
                         type="number"
-                        value={this.props.ABV}
+                        value={this.ABV}
                         placeholder="ABV"
                         onChange={this.handleChange}
                         required
@@ -97,7 +93,7 @@ class AddBeer extends Component {
                     <FormControl 
                         required
                         componentClass="select"  
-                        value={this.props.rating}
+                        value={this.rating}
                         onChange={this.handleChange}
                         name="rating">
                             <option type='text' default>Beer Rating</option>
@@ -112,7 +108,7 @@ class AddBeer extends Component {
                         componentClass="textarea" 
                         name="notes" 
                         onChange={this.handleChange}  
-                        value={this.props.notes} 
+                        value={this.notes} 
                         placeholder="Notes" />
                     </FormGroup>    
                 </FormGroup>
