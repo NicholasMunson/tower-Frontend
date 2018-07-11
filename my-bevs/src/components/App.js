@@ -37,9 +37,15 @@ class App extends Component {
 
     }
 
-    handleBeerDelete(event, id){
+    handleBeerDelete = (event, id) =>{
         event.preventDefault()
-        console.log(id)
+        fetch(`${URL}/beer/${id}`,{
+            method:"Delete",
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
+    
 
     }
 
