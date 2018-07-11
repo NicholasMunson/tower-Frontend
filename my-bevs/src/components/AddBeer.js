@@ -5,7 +5,7 @@ class AddBeer extends Component {
     constructor(props){
         super(props)
         
-        this.state = {
+        this.state = { 
             brewery: "",
             name: "",
             style: "",
@@ -14,6 +14,7 @@ class AddBeer extends Component {
             notes: ""
 
         }
+        
     }
 
     handleSubmit = (event) => {
@@ -28,27 +29,17 @@ class AddBeer extends Component {
             })
         })
         .then(response => response.json())
-        .then(posted => {
-                posted
+        .then(res => { 
+            let beerArray = this.props.beerData
+            let addedBeer = this.state
+            this.props.beerToTop(beerArray, addedBeer)
         })
         .catch(err => {
             console.error(err)
         })    
         
     }    
-    
-    // resetState = () => {
-    //     this.setState = {
-    //         brewery: "",
-    //         name: "",
-    //         style: "",
-    //         rating: "",
-    //         ABV: "",
-    //         notes: ""
 
-    //     }
-    // }
-    
     handleChange = (event) => {
         const key = event.target.name
         const value = event.target.value  
@@ -58,6 +49,7 @@ class AddBeer extends Component {
     }
 y
     render() {
+        
         return (
             <form onSubmit={this.handleSubmit}  className="form-container">
                 <FormGroup>
@@ -84,6 +76,7 @@ y
                         name="style"/>
                     <FormControl
                         type="number"
+                        step="any"
                         value={this.ABV}
                         placeholder="ABV"
                         onChange={this.handleChange}

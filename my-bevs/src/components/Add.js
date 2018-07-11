@@ -16,7 +16,7 @@ class Add extends Component {
         return (
             <Fragment> 
                 <p>Hello for the Add Page</p>
-                <AddBeer handleChange={this.props.handleChange} postData={this.props.postData} />
+                <AddBeer beerData={this.props.beerData} beerToTop={this.props.beerToTop} />
 
             </Fragment>
         )

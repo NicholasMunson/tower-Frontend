@@ -60,12 +60,16 @@ class App extends Component {
         }
         return response
     }
+    beerToTop = (beerArray, addedBeer) => {
 
+        beerArray.unshift(addedBeer)
+        this.setState({beerData: beerArray})
+    }
     render() {
         const wines = this.state.wineData
         const beers = this.state.beerData
         const isLoaded = this.state.isLoaded 
-        
+
         return (
             <Router>
                 <React.Fragment> 
@@ -75,7 +79,7 @@ class App extends Component {
                         <Route path='/about' component={About} />
                         <Route path='/beer-list' component={ () =>  <BeerList beerData={beers} handleBeerDelete={this.handleBeerDelete}  />} />
                         <Route path='/wine-list' component={ () => <WineList wineData={wines} />} />
-                        <Route path='/add' component={ () => <Add handleChange={this.handleChange} postData={this.postData}/> } />
+                        <Route path='/add' component={ () => <Add beerData={beers} beerToTop={this.beerToTop} /> } />
                     </div>
                         <Footer />
                 </React.Fragment>
