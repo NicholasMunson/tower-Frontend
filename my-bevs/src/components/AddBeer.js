@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { FormGroup, FormControl, Button } from 'react-bootstrap'
+import '../styles/add.css'
 class AddBeer extends Component {
     constructor(props){
         super(props)
@@ -29,10 +30,25 @@ class AddBeer extends Component {
         })
         .then(response => response.json())
         .then(posted => {
-            console.log(posted)
+            posted:"posted" 
         })
-
+        .catch(err => {
+            console.error(err)
+        })    
+        
     }    
+    
+    resetState = () => {
+        this.setState = {
+            brewery: "",
+            name: "",
+            style: "",
+            rating: "",
+            ABV: "",
+            notes: ""
+
+        }
+    }
     
     handleChange = (event) => {
 
@@ -42,13 +58,12 @@ class AddBeer extends Component {
         this.setState({
             [key]: value
         })
+
     }
-
-
 
     render() {
         return (
-            <form onSubmit={this.postData}>
+            <form onSubmit={this.postData} onSubmit={this.resetState} className="form-container">
                 <FormGroup>
                     <FormControl
                         type="text"
