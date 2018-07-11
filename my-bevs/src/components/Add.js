@@ -12,10 +12,11 @@ class Add extends Component {
     
 
     render() {
+        
         return (
             <Fragment> 
                 <p>Hello for the Add Page</p>
-                <AddBeer />
+                <AddBeer handleChange={this.props.handleChange} postData={this.props.postData} />
 
             </Fragment>
         )
