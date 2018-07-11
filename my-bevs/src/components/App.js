@@ -22,6 +22,10 @@ class App extends Component {
     
     }
     componentDidMount = () => {
+        this.dataSet()
+    }
+
+    dataSet = () => {
         fetch(`${URL}/beer`)
         .then(response => response.json())
         .then(beer => {
@@ -34,19 +38,27 @@ class App extends Component {
         .then(wine => this.setState({
             wineData:wine.wine
         }))
-
     }
 
     handleBeerDelete = (event, id) =>{
         event.preventDefault()
         fetch(`${URL}/beer/${id}`,{
-            method:"Delete",
+            method:"DELETE",
             headers:{
                 "Content-Type": "application/json"
             }
         })
-    
+        .then(response => response)
+        .then(this.handleErrors)
+        .then(this.dataSet())
 
+    }
+
+    handleErrors(response) {
+        if (!response.ok) {
+            throw new Error(response.statusText)
+        }
+        return response
     }
 
     render() {

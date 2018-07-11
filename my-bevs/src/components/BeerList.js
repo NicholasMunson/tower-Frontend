@@ -3,7 +3,6 @@ import BeerCard from '../components/BeerCard.js'
 import '../styles/card-container.css'
 
 const BeerList = (props) => {
-    console.log(props.handleBeerDelete);
     
     const beerCard = props.beerData.map(beer => <BeerCard handleBeerDelete={props.handleBeerDelete} beer={beer} key={beer.id}/>)
     return(
