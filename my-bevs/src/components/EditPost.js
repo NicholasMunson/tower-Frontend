@@ -119,8 +119,8 @@ y
                             placeholder="Notes" />
                         </FormGroup>    
                     </FormGroup>
-                    <Button className="btn-primary" type="submit">Submit</Button>
-                    <Button className="btn-primary">Back</Button>
+                    <Button className="btn-primary form-btn" type="submit">Submit</Button>
+                    <Button className="btn-primary form-btn">Back</Button>
                 </form>
             </Fragment>
         )
