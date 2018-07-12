@@ -71,9 +71,15 @@ class App extends Component {
     this.dataSet()
     }
 
-    handleDisplayChange = () =>{
+    handleDisplayChange = () => {
         this.setState({
             display: "b"
+        })
+    }
+
+    handleDisplayChangeBack = () => {
+        this.setState({
+            display: "a"
         })
     }
 
@@ -89,7 +95,7 @@ class App extends Component {
                         <Header />
                         <Route path='/home' component= { () => <Home beerData={beers} wineData={wines} isLoaded={isLoaded} component={ () => <PieChartHome beerData={beers} wineData={wines}/>}/>}/>  
                         <Route path='/about' component={About} />
-                        <Route path='/beer-list' component={ () => ( this.state.display === "a" ? <BeerList beerData={beers} handleDisplayChange={this.handleDisplayChange}  handleBeerDelete={this.handleBeerDelete}  /> : <EditPost /> ) } />
+                        <Route path='/beer-list' component={ () => ( this.state.display === "a" ? <BeerList beerData={beers} handleDisplayChange={this.handleDisplayChange}  handleBeerDelete={this.handleBeerDelete}  /> : <EditPost handleDisplayChangeBack={this.handleDisplayChangeBack} /> ) } />
                         <Route path='/wine-list' component={ () => <WineList wineData={wines} />} />
                         <Route path='/add' component={ () => <Add beerData={beers} beerToTop={this.beerToTop} /> } />
                     </div>
