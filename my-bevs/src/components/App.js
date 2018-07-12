@@ -71,16 +71,21 @@ class App extends Component {
     this.dataSet()
     }
 
-    handleDisplayChange = () => {
+    handleDisplayChange = (beer) => {
         this.setState({
             display: "b"
         })
+        this.updateBevCard(beer)
     }
 
     handleDisplayChangeBack = () => {
         this.setState({
             display: "a"
         })
+    }
+
+    updateBevCard = (beer) => {
+        console.log(beer)
     }
 
     render() {
