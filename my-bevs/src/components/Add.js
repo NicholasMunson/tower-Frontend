@@ -21,7 +21,7 @@ class Add extends Component {
         return (
             <Fragment> 
                 <p>Hello for the Add Page</p>
-                {changeDisplay=="a" ? (<AddBeer handleChangeDisplay={this.handleChangeDisplay} />) :(<AddWine handleChangeDisplay={this.handleChangeDisplay} />) }
+                {changeDisplay==="a" ? (<AddBeer handleChangeDisplay={this.handleChangeDisplay} />) :(<AddWine handleChangeDisplay={this.handleChangeDisplay} />) }
                 
             </Fragment>
         )

@@ -1,6 +1,20 @@
 .form-container{
-    padding-top: 60px;
-    padding-bottom: 70px;
+    padding: 10px 10% 70px 10%;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
 
 }
 
+.form-title{
+    padding-top: 60px;
+    text-align: center;
+}
+
+.form-btn{
+    margin: 1% 0%;
+}
+
+.form-group{
+    margin-bottom: 1%;
+}
