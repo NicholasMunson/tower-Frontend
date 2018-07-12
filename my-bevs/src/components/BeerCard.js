@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Row, Grid } from 'react-bootstrap'
+import '../styles/beerCard.css'
 
 const BeerCard = (props) => {
     return (

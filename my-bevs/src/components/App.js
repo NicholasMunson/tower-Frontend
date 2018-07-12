@@ -172,12 +172,13 @@ class App extends Component {
         .catch(err => {
             console.error(err)
         })
-    }
+        .then(this.dataSet)
+    }   
 
 
     render() {
-        const wines = this.state.wineData
-        const beers = this.state.beerData
+        const wines = this.state.wineData.reverse()
+        const beers = this.state.beerData.reverse()
         const isLoaded = this.state.isLoaded 
         let currentBeer = this.state.currentBeer
         return (

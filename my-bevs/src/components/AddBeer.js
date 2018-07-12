@@ -12,9 +12,7 @@ class AddBeer extends Component {
             rating: "",
             ABV: "",
             notes: ""
-
-        }
-        
+        }  
     }
 
     handleSubmit = (event) => {
