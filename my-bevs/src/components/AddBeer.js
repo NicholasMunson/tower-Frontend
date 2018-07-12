@@ -114,6 +114,7 @@ y
                     </FormGroup>    
                 </FormGroup>
                 <Button type="submit">Submit</Button>
+                <Button className="change-btn" onClick={() => this.props.handleChangeDisplay("b")}>Add Wine</Button>
             </form>
             
         )

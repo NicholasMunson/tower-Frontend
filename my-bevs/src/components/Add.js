@@ -1,5 +1,8 @@
 import React, {Component, Fragment} from 'react';
+import { Button } from 'react-bootstrap'
 import AddBeer from './AddBeer.js'
+import AddWine from './AddWine.js'
+
 
 class Add extends Component {
     constructor(props){
@@ -9,19 +12,21 @@ class Add extends Component {
         }
     }
 
-    
+    handleChangeDisplay = (display) => {
+        this.setState({display: display})
 
+    }
+    
     render() {
-        
+        let changeDisplay = this.state.display 
         return (
             <Fragment> 
                 <p>Hello for the Add Page</p>
-                <AddBeer beerData={this.props.beerData} beerToTop={this.props.beerToTop} />
-
+                {changeDisplay=="a" ? (<AddBeer handleChangeDisplay={this.handleChangeDisplay} />) :(<AddWine handleChangeDisplay={this.handleChangeDisplay} />) }
+                
             </Fragment>
         )
     }
-
 }
 
 export default Add

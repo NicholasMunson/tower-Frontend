@@ -19,7 +19,13 @@ class App extends Component {
             beerData:[],
             wineData:[],
             isLoaded: false,
-            display: "a"
+            display: "a",
+            brewery: "",
+            name: "",
+            style: "",
+            rating: "",
+            ABV: "",
+            notes: ""
         }
     
     }
@@ -84,15 +90,59 @@ class App extends Component {
         })
     }
 
-    updateBevCard = (beer) => {
-        console.log(beer)
+    handleChange = (event) => {
+        // event.preventDefault()
+        const key = event.target.name
+        const value = event.target.value  
+        this.setState({
+            [key]: value
+        })
     }
+
+    updateBevCard = (beer) => {
+        this.setState({
+            brewery: `${beer.brewery}`,
+            name: `${beer.name}`,
+            style: `${beer.style}`,
+            rating: `${beer.rating}`,
+            ABV: `${beer.ABV}`,
+            notes: `${beer.notes}`
+        })
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+        const body = JSON.stringify(this.state)
+
+        fetch("https://mybevs.herokuapp.com/beer", {
+            method: "PUT",
+            body: body,
+            headers: new Headers({"content-type": "application/json"})
+        })
+            .then(response => response.json())
+            .then(res => {
+                let beerArray = this.props.beerData
+                let addedBeer = this.state
+                let giveKey = (addedBeer.key = res.Posted.id)
+                console.log(addedBeer.key);
+                // trying to set key to id
+                console.log(giveKey);
+                this
+                    .props
+                    .beerToTop(beerArray, addedBeer, res.Posted)
+            })
+            .catch(err => {
+                console.error(err)
+            })
+
+        }
+
 
     render() {
         const wines = this.state.wineData
         const beers = this.state.beerData
         const isLoaded = this.state.isLoaded 
-
+        let props = this.state
         return (
             <Router>
                 <React.Fragment> 
@@ -100,7 +150,7 @@ class App extends Component {
                         <Header />
                         <Route path='/home' component= { () => <Home beerData={beers} wineData={wines} isLoaded={isLoaded} component={ () => <PieChartHome beerData={beers} wineData={wines}/>}/>}/>  
                         <Route path='/about' component={About} />
-                        <Route path='/beer-list' component={ () => ( this.state.display === "a" ? <BeerList beerData={beers} handleDisplayChange={this.handleDisplayChange}  handleBeerDelete={this.handleBeerDelete}  /> : <EditPost handleDisplayChangeBack={this.handleDisplayChangeBack} /> ) } />
+                        <Route path='/beer-list' component={ () => ( this.state.display === "a" ? <BeerList beerData={beers} handleDisplayChange={this.handleDisplayChange}  handleBeerDelete={this.handleBeerDelete} /> : <EditPost handleChange={this.handleChange} handleDisplayChangeBack={this.handleDisplayChangeBack} props={props} /> ) } />
                         <Route path='/wine-list' component={ () => <WineList wineData={wines} />} />
                         <Route path='/add' component={ () => <Add beerData={beers} beerToTop={this.beerToTop} /> } />
                     </div>
