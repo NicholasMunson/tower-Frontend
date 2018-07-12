@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import { Button } from 'react-bootstrap'
 import AddBeer from './AddBeer.js'
 import AddWine from './AddWine.js'
 
