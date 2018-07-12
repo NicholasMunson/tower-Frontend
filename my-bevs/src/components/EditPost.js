@@ -5,11 +5,12 @@ import '../styles/edit.css'
 class EditPost extends Component{
     render(){
         let currentBeer = this.props.currentBeer
+        console.log(currentBeer.id)
         return (
             <Fragment>
                 <h4 className="form-title">Edit your Bev</h4>
                 <form
-                    onSubmit={ (event) => {{this.props.handleDisplayChangeBack}; {this.props.handleUpdateBeerCard(event, this.state, currentBeer.id )}}}
+                    onSubmit={ (event) => {{this.props.handleDisplayChangeBack("a")}; {this.props.handleUpdateBeerCard(event, currentBeer.id )}}}
                     className="edit-form-container"
                     key={this.id}>
                     <FormGroup>
@@ -67,7 +68,7 @@ class EditPost extends Component{
                     <Button className="btn-primary form-btn" type="submit">Submit</Button>
                     <Button
                         className="btn-primary form-btn"
-                        onClick={this.props.handleDisplayChangeBack}>Back</Button>
+                        onClick={() => this.props.handleDisplayChangeBack('a')}>Back</Button>
                 </form>
             </Fragment>
         )

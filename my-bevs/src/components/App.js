@@ -26,7 +26,8 @@ class App extends Component {
             style:'',            
             rating:'',
             ABV:'',          
-            notes:''
+            notes:'',
+            id: ''
             }           
         }
     
@@ -79,9 +80,9 @@ class App extends Component {
     this.dataSet()
     }
 
-    handleDisplayChange = () => {
+    handleDisplayChange = (display) => {
         this.setState({
-            display: "b"
+            display: display
         })
         
     }
@@ -92,7 +93,7 @@ class App extends Component {
         })
     }
 
- handleChange = (event) => {
+    handleChange = (event) => {
     event.preventDefault()
     const key = event.target.name
     const value = event.target.value
@@ -112,7 +113,8 @@ class App extends Component {
             style: `${beer.style}`,
             rating: `${beer.rating}`,
             ABV: `${beer.ABV}`,
-            notes: `${beer.notes}`
+            notes: `${beer.notes}`,
+            id: `${beer.id}`
             }
         })
     }
@@ -144,23 +146,25 @@ class App extends Component {
 
         }
 
-    handleUpdateBeerCard = (event,   id) => {
+    handleUpdateBeerCard = (event, id) => {
         event.preventDefault()
+        console.log(id)
         let updateUrl =`${URL}/beer/${id}`
         const data = new FormData(event.target)
-        console.log(data)
+        console.log(data.get("brewery"))
 
         fetch(updateUrl,{
             method:"PUT",
             body: JSON.stringify({
             brewery: data.get("brewery"),
-            name:data.get("name"),
-            style:data.get("style"),
-            rating:data.get("rating"),
-            ABV:data.get("ABV"),
-            notes:data.get("notes") 
+            name: data.get("name"),
+            style: data.get("style"),
+            rating: data.get("rating"),
+            ABV: data.get("ABV"),
+            notes: data.get("notes") 
             }),
             headers: {
+                'Accept': 'application/json',
                 "Content-Type": "application/json"
             }
         })

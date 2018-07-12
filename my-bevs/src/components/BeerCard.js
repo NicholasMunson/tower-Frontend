@@ -13,7 +13,7 @@ const BeerCard = (props) => {
             <div className="btn-container">
                 <Grid>
                     <Row xs={12} md={12} className="btn-row">
-                        <Button bsStyle="primary" onClick={ () => {props.handleDisplayChange(); props.updateBevCard(props.beer)} }> Edit </Button>
+                        <Button bsStyle="primary" onClick={ () => {props.handleDisplayChange("b"); props.updateBevCard(props.beer)} }> Edit </Button>
                         <Button bsStyle="danger" onClick={ (event) => {props.handleBeerDelete(event, props.beer.id)}}>Delete</Button>
                     </Row>
                 </Grid>
