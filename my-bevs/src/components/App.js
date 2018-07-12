@@ -18,6 +18,7 @@ class App extends Component {
             beerData:[],
             wineData:[],
             isLoaded: false,
+            display: null
         }
     
     }
@@ -60,10 +61,16 @@ class App extends Component {
         }
         return response
     }
-    beerToTop = (beerArray, addedBeer) => {
-
+    beerToTop = (beerArray, addedBeer, response) => {
+       
         beerArray.unshift(addedBeer)
-        this.setState({beerData: beerArray})
+        this.setState({
+            beerData: beerArray
+        })
+        //without dataset() added beer goes to the top but has no key
+    this.dataSet()
+        
+
     }
     render() {
         const wines = this.state.wineData

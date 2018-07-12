@@ -29,10 +29,18 @@ class AddBeer extends Component {
             })
         })
         .then(response => response.json())
+
         .then(res => { 
             let beerArray = this.props.beerData
             let addedBeer = this.state
-            this.props.beerToTop(beerArray, addedBeer)
+            let giveKey = (addedBeer.key = res.Posted.id)
+            console.log(addedBeer.key);
+            // trying to set key to id 
+            console.log(giveKey);
+            
+
+        
+            this.props.beerToTop(beerArray, addedBeer, res.Posted)
         })
         .catch(err => {
             console.error(err)
@@ -49,9 +57,9 @@ class AddBeer extends Component {
     }
 y
     render() {
-        
+
         return (
-            <form onSubmit={this.handleSubmit}  className="form-container">
+            <form onSubmit={this.handleSubmit}  className="form-container" key={this.id}>
                 <FormGroup>
                     <FormControl
                         type="text"
