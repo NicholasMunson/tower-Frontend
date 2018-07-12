@@ -7,6 +7,7 @@ import WineList from './WineList'
 import Add from './Add'
 import Footer from './Footer'
 import Home from './Home'
+import EditPost from './EditPost'
 import '../styles/App.css'
 import PieChartHome from './PieChartHome.js'
 const URL = "https://mybevs.herokuapp.com" 
@@ -18,7 +19,7 @@ class App extends Component {
             beerData:[],
             wineData:[],
             isLoaded: false,
-            display: null
+            display: "a"
         }
     
     }
@@ -62,16 +63,20 @@ class App extends Component {
         return response
     }
     beerToTop = (beerArray, addedBeer, response) => {
-       
         beerArray.unshift(addedBeer)
         this.setState({
             beerData: beerArray
         })
         //without dataset() added beer goes to the top but has no key
     this.dataSet()
-        
-
     }
+
+    handleDisplayChange = () =>{
+        this.setState({
+            display: "b"
+        })
+    }
+
     render() {
         const wines = this.state.wineData
         const beers = this.state.beerData
@@ -84,7 +89,7 @@ class App extends Component {
                         <Header />
                         <Route path='/home' component= { () => <Home beerData={beers} wineData={wines} isLoaded={isLoaded} component={ () => <PieChartHome beerData={beers} wineData={wines}/>}/>}/>  
                         <Route path='/about' component={About} />
-                        <Route path='/beer-list' component={ () =>  <BeerList beerData={beers} handleBeerDelete={this.handleBeerDelete}  />} />
+                        <Route path='/beer-list' component={ () => ( this.state.display === "a" ? <BeerList beerData={beers} handleDisplayChange={this.handleDisplayChange}  handleBeerDelete={this.handleBeerDelete}  /> : <EditPost /> ) } />
                         <Route path='/wine-list' component={ () => <WineList wineData={wines} />} />
                         <Route path='/add' component={ () => <Add beerData={beers} beerToTop={this.beerToTop} /> } />
                     </div>

@@ -4,7 +4,7 @@ import '../styles/card-container.css'
 
 const BeerList = (props) => {
     
-    const beerCard = props.beerData.map(beer => <BeerCard handleBeerDelete={props.handleBeerDelete} beer={beer} key={beer.id}/>)
+    const beerCard = props.beerData.map(beer => <BeerCard handleDisplayChange={props.handleDisplayChange} handleBeerDelete={props.handleBeerDelete} beer={beer} key={beer.id}/>)
    
     
     return(
