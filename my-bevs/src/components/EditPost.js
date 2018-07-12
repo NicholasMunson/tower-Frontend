@@ -120,7 +120,7 @@ y
                         </FormGroup>    
                     </FormGroup>
                     <Button className="btn-primary form-btn" type="submit">Submit</Button>
-                    <Button className="btn-primary form-btn">Back</Button>
+                    <Button className="btn-primary form-btn" onClick={this.props.handleDisplayChangeBack}>Back</Button>
                 </form>
             </Fragment>
         )
