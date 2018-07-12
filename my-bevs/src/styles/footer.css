@@ -2,8 +2,8 @@
         position:sticky;
         bottom:0;
         width:100%;
-        height:60px;   /* Height of the footer */
-        background:#b3b3b3;
+        height:60px;   
+        background:rgba(101,140,103,10)
 }
 .footer-content{
     display: flex;
