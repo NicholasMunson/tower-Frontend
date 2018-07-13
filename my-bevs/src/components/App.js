@@ -118,6 +118,12 @@ class App extends Component {
                 [key]: value
             }
         })
+        this.setState({
+            currentWine: {
+                ...this.state.currentBeer,
+                [key]: value
+            }
+        })
 }
     updateWineCard = (wine) => {
         this.setState({
@@ -151,28 +157,33 @@ class App extends Component {
         event.preventDefault()
         const body = JSON.stringify(this.state)
 
-        fetch("https://mybevs.herokuapp.com/beer", {
-            method: "PUT",
-            body: body,
-            headers: new Headers({"content-type": "application/json"})
-        })
-            .then(response => response.json())
-            .then(res => {
-                let beerArray = this.props.beerData
-                let addedBeer = this.state
-                let giveKey = (addedBeer.key = res.Posted.id)
-                console.log(addedBeer.key);
-                // trying to set key to id
-                console.log(giveKey);
-                this
-                    .props
-                    .beerToTop(beerArray, addedBeer, res.Posted)
+            fetch("https://mybevs.herokuapp.com/beer", {
+                method: "PUT",
+                body: body,
+                headers: new Headers({"content-type": "application/json"})
             })
+            .then(response => response)
+            .then(this.handleErrors)  
             .catch(err => {
                 console.error(err)
             })
-
         }
+
+        handleWineSubmit = (event) => {
+            event.preventDefault()
+            const body = JSON.stringify(this.state)
+    
+                fetch("https://mybevs.herokuapp.com/wine", {
+                    method: "PUT",
+                    body: body,
+                    headers: new Headers({"content-type": "application/json"})
+                })
+                .then(response => response)
+                .then(this.handleErrors)  
+                .catch(err => {
+                    console.error(err)
+                })
+            }
 
     handleUpdateBeerCard = (event, id) => {
         event.preventDefault()
@@ -194,6 +205,7 @@ class App extends Component {
                 "Content-Type": "application/json"
             }
         })
+        .then(response => response)
         .then(this.handleErrors)
         .catch(err => {
             console.error(err)
@@ -201,6 +213,33 @@ class App extends Component {
         .then(this.dataSet)
     }   
 
+    handleUpdateWineCard = (event, id) => {
+        event.preventDefault()
+        let updateUrl =`${URL}/wine/${id}`
+        const data = new FormData(event.target)
+
+        fetch(updateUrl,{
+            method:"PUT",
+            body: JSON.stringify({
+            winery: data.get("winery"),
+            region: data.get("region"),
+            style: data.get("style"),
+            rating: data.get("rating"),
+            ABV: data.get("ABV"),
+            notes: data.get("notes") 
+            }),
+            headers: {
+                'Accept': 'application/json',
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => response)
+        .then(this.handleErrors)
+        .catch(err => {
+            console.error(err)
+        })
+        .then(this.dataSet)
+    } 
 
     render() {
         const wines = this.state.wineData
@@ -208,6 +247,7 @@ class App extends Component {
         const isLoaded = this.state.isLoaded 
         let currentBeer = this.state.currentBeer
         let currentWine = this.state.currentWine
+        console.log(currentWine)
         return (
             <Router>
                 <React.Fragment> 
@@ -216,7 +256,7 @@ class App extends Component {
                         <Route path='/home' component= { () => <Home beerData={beers} wineData={wines} isLoaded={isLoaded} component={ () => <PieChartHome beerData={beers} wineData={wines}/>}/>}/>  
                         <Route path='/about' component={About} />
                         <Route path='/beer-list' component={ () => (this.state.display === "a" ? <BeerList beerData={beers} handleDisplayChange={this.handleDisplayChange}  handleBeerDelete={this.handleBeerDelete} updateBevCard={this.updateBevCard} /> : <EditPost handleChange={this.handleChange} handleDisplayChangeBack={this.handleDisplayChangeBack} currentBeer={currentBeer} handleUpdateBeerCard={this.handleUpdateBeerCard}  /> ) } />
-                        <Route path='/wine-list' component={ () => (this.state.display === "a" ? <WineList wineData={wines} handleDisplayChange={this.handleDisplayChange} handleWineDelete={this.handleWineDelete} updateWineCard={this.updateWineCard} />: <EditWinePost handleDisplayChange={this.handleDisplayChange} currentWine={currentWine} handleDisplayChange={this.handleDisplayChange} /> )} />
+                        <Route path='/wine-list' component={ () => (this.state.display === "a" ? <WineList wineData={wines} handleDisplayChange={this.handleDisplayChange} handleWineDelete={this.handleWineDelete} updateWineCard={this.updateWineCard} />: <EditWinePost handleDisplayChange={this.handleDisplayChange} currentWine={currentWine} handleDisplayChange={this.handleDisplayChange} handleUpdateWineCard={this.handleUpdateWineCard} /> )} />
                         <Route path='/add' component={ () => <Add beerData={beers} beerToTop={this.beerToTop} /> } />
                     </div>
                         <Footer />

@@ -5,13 +5,11 @@ import '../styles/add.css'
 class EditWinePost extends Component{
     render(){
         let currentWine = this.props.currentWine
-        console.log(currentWine)
         return (
             <Fragment>
-                
                 <form
-                    onSubmit={ (event) => {{this.props.handleDisplayChangeBack("a")}; {this.props.handleUpdateWineCard(event, currentWine.id )}}}
-                    className="form-container"
+                    onSubmit={ (event) => {{this.props.handleDisplayChange("a")}; {this.props.handleUpdateWineCard(event, currentWine.id )}}}
+                    className="form-container wine-form-container"
                     key={this.id}>
                     <h4 className="form-title">Edit your Bev</h4>
                     <FormGroup>
@@ -21,13 +19,13 @@ class EditWinePost extends Component{
                             placeholder="Winery Name"
                             onChange={this.handleChange}
                             required="required"
-                            name="brewery"/>
+                            name="winery"/>
                         <FormControl 
                             type="text" 
                             defaultValue={currentWine.region} 
                             placeholder="Wine Region"
                             onChange={this.handleChange}
-                            required="required" name="name"/>
+                            required="required" name="region"/>
                         <FormControl
                             type="text"
                             defaultValue={currentWine.style}
