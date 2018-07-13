@@ -1,4 +1,4 @@
-.beer-card {
+.beer-card, .wine-card {
     text-align: center;
     color: azure;
     background-color: rgba(0, 0, 0, 0.5);

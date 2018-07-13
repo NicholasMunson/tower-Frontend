@@ -18,6 +18,7 @@ const PieChartHome = (props) => {
     ]
     return (
         <section className="pie-chart-container"> 
+            <p className="welcome-text">Welcome to the home console. Below will show you the ratio of Beer to Wine in you collection of beverages.</p>
             <div className="color-key-container"> 
                 <div className="key-container"> 
                     <p>Wine</p>

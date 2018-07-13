@@ -60,8 +60,8 @@ y
 
         return (
             <Fragment> 
-                <h4 className="form-title">Add your Wine!</h4>
                 <form onSubmit={this.handleSubmit}  className="form-container" key={this.id}>
+                <h4 className="form-title">Add your Wine!</h4>
                     <FormGroup>
                         <FormControl
                             type="text"

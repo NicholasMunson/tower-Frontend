@@ -8,7 +8,7 @@ const WineList = (props) => {
     
 
     return(
-        <div className="card-container">
+        <div className="wine-card-container">
         {[wineCard]}
         </div>
 

@@ -20,9 +20,7 @@ class Add extends Component {
         let changeDisplay = this.state.display 
         return (
             <Fragment> 
-                <p>Hello for the Add Page</p>
                 {changeDisplay==="a" ? (<AddBeer handleChangeDisplay={this.handleChangeDisplay} />) :(<AddWine handleChangeDisplay={this.handleChangeDisplay} />) }
-                
             </Fragment>
         )
     }

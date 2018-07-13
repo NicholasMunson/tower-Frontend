@@ -1,6 +1,6 @@
 import React, {Fragment, Component} from 'react';
 import {FormGroup, FormControl, Button} from 'react-bootstrap'
-import '../styles/edit.css'
+import '../styles/add.css'
 
 class EditPost extends Component{
     render(){
@@ -8,11 +8,12 @@ class EditPost extends Component{
         console.log(currentBeer.id)
         return (
             <Fragment>
-                <h4 className="form-title">Edit your Bev</h4>
+                
                 <form
                     onSubmit={ (event) => {{this.props.handleDisplayChangeBack("a")}; {this.props.handleUpdateBeerCard(event, currentBeer.id )}}}
-                    className="edit-form-container"
+                    className="form-container"
                     key={this.id}>
+                    <h4 className="form-title">Edit your Bev</h4>
                     <FormGroup>
                         <FormControl
                             type="text"
