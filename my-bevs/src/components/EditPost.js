@@ -9,7 +9,7 @@ class EditPost extends Component{
             <Fragment>
                 <form
                     onSubmit={ (event) => {{this.props.handleDisplayChangeBack("a")}; {this.props.handleUpdateBeerCard(event, currentBeer.id )}}}
-                    className="form-container"
+                    className="form-container beer-form-container"
                     key={this.id}>
                     <h4 className="form-title">Edit your Bev</h4>
                     <FormGroup>

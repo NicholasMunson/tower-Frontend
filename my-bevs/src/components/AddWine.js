@@ -6,28 +6,26 @@ class AddWine extends Component {
         super(props)
         this.state = { 
             winery: "",
-            name: "",
+            region: "",
             style: "",
             rating: "",
             ABV: "",
             notes: ""
 
         }
-        console.log(this.props)
     }
 
-    handleSubmit = (event) => {
+    handleWineSubmit = (event) => {
         event.preventDefault()
         const body = JSON.stringify(this.state)
-        
-        fetch("https://mybevs.herokuapp.com/beer",{
+    
+        fetch("https://mybevs.herokuapp.com/wine",{
             method: "POST",
             body: body,
             headers: new Headers({
                 "content-type": "application/json"
             })
         })
-        .then(response => response.json())
         .catch(err => {
             console.error(err)
         })    
@@ -42,26 +40,25 @@ class AddWine extends Component {
     }
 
     render() {
-
         return (
             <Fragment> 
-                <form onSubmit={this.handleSubmit}  className="form-container" key={this.id}>
+                <form onSubmit={this.handleWineSubmit}  className="form-container wine-form-container" key={this.id}>
                 <h4 className="form-title">Add your Wine!</h4>
                     <FormGroup>
                         <FormControl
                             type="text"
-                            value={this.brewery}
-                            placeholder="Brewery Name"
+                            value={this.winery}
+                            placeholder="Winery Name"
                             onChange={this.handleChange}
                             required
-                            name="brewery"/>
+                            name="winery"/>
                         <FormControl
                             type="text"
-                            value={this.name}
-                            placeholder="Beer Name"
+                            value={this.region}
+                            placeholder="Wine Region"
                             onChange={this.handleChange}
                             required
-                            name="name"/>
+                            name="region"/>
                         <FormControl
                             type="text"
                             value={this.style}
@@ -84,7 +81,7 @@ class AddWine extends Component {
                             value={this.rating}
                             onChange={this.handleChange}
                             name="rating">
-                                <option type='text' default>Beer Rating</option>
+                                <option type='text' default>Wine Rating</option>
                                 <option type='number' value="1">1</option>
                                 <option type='number' value="2">2</option>
                                 <option type='number' value="3">3</option>

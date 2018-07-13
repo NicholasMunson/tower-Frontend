@@ -28,8 +28,7 @@ class AddBeer extends Component {
         })
         .catch(err => {
             console.error(err)
-        })    
-        
+        })      
     }    
 
     handleChange = (event) => {
@@ -39,12 +38,11 @@ class AddBeer extends Component {
             [key]: value
         })
     }
-y
-    render() {
 
+    render() {
         return (
             <Fragment> 
-                <form onSubmit={this.handleSubmit}  className="form-container" key={this.id}>
+                <form onSubmit={this.handleSubmit}  className="form-container beer-form-container" key={this.id}>
                 <h4 className="form-title">Add your Beer!</h4>
                     <FormGroup>
                         <FormControl
