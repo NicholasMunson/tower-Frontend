@@ -5,7 +5,14 @@
     align-content: center;
     display: flex;
     flex-direction: column;
+}
+
+.beer-form-container{
     background-image: url('../styles/images/BarelyGrowing.jpeg');
+}
+
+.wine-form-container{
+    background-image: url("../styles/images/vineyards-hero.jpg");
 }
 
 .form-title{
