@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import CustomNavBar from './CustomNavBar'
 import { PageHeader } from 'react-bootstrap'
 import '../styles/header.css'

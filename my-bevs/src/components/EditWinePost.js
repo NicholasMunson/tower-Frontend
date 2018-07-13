@@ -4,33 +4,33 @@ import '../styles/add.css'
 
 class EditWinePost extends Component{
     render(){
-        let currentBeer = this.props.currentBeer
-        console.log(currentBeer.id)
+        let currentWine = this.props.currentWine
+        console.log(currentWine)
         return (
             <Fragment>
                 
                 <form
-                    onSubmit={ (event) => {{this.props.handleDisplayChangeBack("a")}; {this.props.handleUpdateBeerCard(event, currentBeer.id )}}}
+                    onSubmit={ (event) => {{this.props.handleDisplayChangeBack("a")}; {this.props.handleUpdateWineCard(event, currentWine.id )}}}
                     className="form-container"
                     key={this.id}>
                     <h4 className="form-title">Edit your Bev</h4>
                     <FormGroup>
                         <FormControl
                             type="text"
-                            defaultValue={currentBeer.brewery}
-                            placeholder="Brewery Name"
+                            defaultValue={currentWine.winery}
+                            placeholder="Winery Name"
                             onChange={this.handleChange}
                             required="required"
                             name="brewery"/>
                         <FormControl 
                             type="text" 
-                            defaultValue={currentBeer.name} 
-                            placeholder="Beer Name"
+                            defaultValue={currentWine.region} 
+                            placeholder="Wine Region"
                             onChange={this.handleChange}
                             required="required" name="name"/>
                         <FormControl
                             type="text"
-                            defaultValue={currentBeer.style}
+                            defaultValue={currentWine.style}
                             placeholder="Style"
                             onChange={this.handleChange}
                             required="required"
@@ -38,7 +38,7 @@ class EditWinePost extends Component{
                         <FormControl
                             type="number"
                             step="any"
-                            defaultValue={currentBeer.ABV}
+                            defaultValue={currentWine.ABV}
                             placeholder="ABV"
                             onChange={this.handleChange}
                             required="required"
@@ -47,10 +47,10 @@ class EditWinePost extends Component{
                             <FormControl
                                 required="required"
                                 componentClass="select"
-                                defaultValue={currentBeer.rating}
+                                defaultValue={currentWine.rating}
                                 onChange={this.handleChange}
                                 name="rating">
-                                <option type='text' default="default">Beer Rating</option>
+                                <option type='text' default="default">Wine Rating</option>
                                 <option type='number' value="1">1</option>
                                 <option type='number' value="2">2</option>
                                 <option type='number' value="3">3</option>
@@ -62,14 +62,14 @@ class EditWinePost extends Component{
                                 componentClass="textarea"
                                 name="notes"
                                 onChange={this.handleChange}
-                                defaultValue={currentBeer.notes}
+                                defaultValue={currentWine.notes}
                                 placeholder="Notes"/>
                         </FormGroup>
                     </FormGroup>
                     <Button className="btn-primary form-btn" type="submit">Submit</Button>
                     <Button
                         className="btn-primary form-btn"
-                        onClick={() => this.props.handleDisplayChangeBack('a')}>Back</Button>
+                        onClick={() => this.props.handleDisplayChange('a')}>Back</Button>
                 </form>
             </Fragment>
         )

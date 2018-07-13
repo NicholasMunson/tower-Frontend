@@ -13,8 +13,8 @@ const WineCard = (props) => {
             <div className="btn-container">
                 <Grid>
                     <Row xs={12} md={12} className="btn-row">
-                        <Button bsStyle="primary"> Edit </Button>
-                        <Button bsStyle="danger">Delete</Button>
+                        <Button bsStyle="primary" onClick={ () => {props.handleDisplayChange("b"); props.updateWineCard(props.wine)} }> Edit </Button>
+                        <Button bsStyle="danger" onClick={ (event) => {props.handleWineDelete(event, props.wine.id)}}>Delete</Button>
                     </Row>
                 </Grid>
             </div>

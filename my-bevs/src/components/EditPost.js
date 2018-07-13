@@ -5,10 +5,8 @@ import '../styles/add.css'
 class EditPost extends Component{
     render(){
         let currentBeer = this.props.currentBeer
-        console.log(currentBeer.id)
         return (
             <Fragment>
-                
                 <form
                     onSubmit={ (event) => {{this.props.handleDisplayChangeBack("a")}; {this.props.handleUpdateBeerCard(event, currentBeer.id )}}}
                     className="form-container"

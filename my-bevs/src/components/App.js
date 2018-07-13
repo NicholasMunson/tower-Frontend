@@ -29,7 +29,16 @@ class App extends Component {
             ABV:'',          
             notes:'',
             id: ''
-            }           
+            },
+            currentWine:{
+                winery:'',
+                region:'',           
+                style:'',            
+                rating:'',
+                ABV:'',          
+                notes:'',
+                id: ''
+                }           
         }
     
     }
@@ -66,6 +75,19 @@ class App extends Component {
 
     }
 
+    handleWineDelete = (event, id) =>{
+        event.preventDefault()
+        fetch(`${URL}/wine/${id}`,{
+            method:"DELETE",
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => response)
+        .then(this.handleErrors)
+        .then(this.dataSet())
+    }
+
     handleErrors(response) {
         if (!response.ok) {
             throw new Error(response.statusText)
@@ -97,7 +119,20 @@ class App extends Component {
             }
         })
 }
+    updateWineCard = (wine) => {
+        this.setState({
+            currentWine:{
+            winery: `${wine.winery}`,
+            region: `${wine.name}`,
+            style: `${wine.style}`,
+            rating: `${wine.rating}`,
+            ABV: `${wine.ABV}`,
+            notes: `${wine.notes}`,
+            id: `${wine.id}`
+            }
+        })
 
+    }
     updateBevCard = (beer) => {
         this.setState({
             currentBeer:{
@@ -143,7 +178,6 @@ class App extends Component {
         event.preventDefault()
         let updateUrl =`${URL}/beer/${id}`
         const data = new FormData(event.target)
-        console.log(data.get("brewery"))
 
         fetch(updateUrl,{
             method:"PUT",
@@ -173,6 +207,7 @@ class App extends Component {
         const beers = this.state.beerData
         const isLoaded = this.state.isLoaded 
         let currentBeer = this.state.currentBeer
+        let currentWine = this.state.currentWine
         return (
             <Router>
                 <React.Fragment> 
@@ -181,7 +216,7 @@ class App extends Component {
                         <Route path='/home' component= { () => <Home beerData={beers} wineData={wines} isLoaded={isLoaded} component={ () => <PieChartHome beerData={beers} wineData={wines}/>}/>}/>  
                         <Route path='/about' component={About} />
                         <Route path='/beer-list' component={ () => (this.state.display === "a" ? <BeerList beerData={beers} handleDisplayChange={this.handleDisplayChange}  handleBeerDelete={this.handleBeerDelete} updateBevCard={this.updateBevCard} /> : <EditPost handleChange={this.handleChange} handleDisplayChangeBack={this.handleDisplayChangeBack} currentBeer={currentBeer} handleUpdateBeerCard={this.handleUpdateBeerCard}  /> ) } />
-                        <Route path='/wine-list' component={ () => (this.state.display === "a" ? <WineList wineData={wines} handleDisplayChange={this.handleDisplayChange} />: <EditWinePost /> )} />
+                        <Route path='/wine-list' component={ () => (this.state.display === "a" ? <WineList wineData={wines} handleDisplayChange={this.handleDisplayChange} handleWineDelete={this.handleWineDelete} updateWineCard={this.updateWineCard} />: <EditWinePost handleDisplayChange={this.handleDisplayChange} currentWine={currentWine} handleDisplayChange={this.handleDisplayChange} /> )} />
                         <Route path='/add' component={ () => <Add beerData={beers} beerToTop={this.beerToTop} /> } />
                     </div>
                         <Footer />
