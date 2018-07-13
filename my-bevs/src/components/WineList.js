@@ -4,12 +4,12 @@ import '../styles/card-container.css'
 
 const WineList = (props) => {
     const wineCard = props.wineData.map(wine => <WineCard wine={wine} key={wine.id}/>)
-    console.log(wineCard);
+    const revWineCard = wineCard.reverse()
     
 
     return(
         <div className="wine-card-container">
-        {[wineCard]}
+        {[revWineCard]}
         </div>
 
     )

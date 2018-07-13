@@ -4,9 +4,8 @@ import '../styles/add.css'
 class AddWine extends Component {
     constructor(props){
         super(props)
-        
         this.state = { 
-            brewery: "",
+            winery: "",
             name: "",
             style: "",
             rating: "",
@@ -14,7 +13,7 @@ class AddWine extends Component {
             notes: ""
 
         }
-        
+        console.log(this.props)
     }
 
     handleSubmit = (event) => {
@@ -29,23 +28,9 @@ class AddWine extends Component {
             })
         })
         .then(response => response.json())
-
-        .then(res => { 
-            let beerArray = this.props.beerData
-            let addedBeer = this.state
-            let giveKey = (addedBeer.key = res.Posted.id)
-            console.log(addedBeer.key);
-            // trying to set key to id 
-            console.log(giveKey);
-            
-
-        
-            this.props.beerToTop(beerArray, addedBeer, res.Posted)
-        })
         .catch(err => {
             console.error(err)
         })    
-        
     }    
 
     handleChange = (event) => {
@@ -55,7 +40,7 @@ class AddWine extends Component {
             [key]: value
         })
     }
-y
+
     render() {
 
         return (

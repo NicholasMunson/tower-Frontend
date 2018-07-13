@@ -8,8 +8,9 @@ import Add from './Add'
 import Footer from './Footer'
 import Home from './Home'
 import EditPost from './EditPost'
+import EditWinePost from './EditWinePost'
 import '../styles/App.css'
-import PieChartHome from './PieChartHome.js'
+import PieChartHome from './PieChartHome'
 const URL = "https://mybevs.herokuapp.com" 
 
 class App extends Component {
@@ -70,14 +71,6 @@ class App extends Component {
             throw new Error(response.statusText)
         }
         return response
-    }
-    beerToTop = (beerArray, addedBeer, response) => {
-        beerArray.unshift(addedBeer)
-        this.setState({
-            beerData: beerArray
-        })
-        //without dataset() added beer goes to the top but has no key
-    this.dataSet()
     }
 
     handleDisplayChange = (display) => {
@@ -148,7 +141,6 @@ class App extends Component {
 
     handleUpdateBeerCard = (event, id) => {
         event.preventDefault()
-        console.log(id)
         let updateUrl =`${URL}/beer/${id}`
         const data = new FormData(event.target)
         console.log(data.get("brewery"))
@@ -177,8 +169,8 @@ class App extends Component {
 
 
     render() {
-        const wines = this.state.wineData.reverse()
-        const beers = this.state.beerData.reverse()
+        const wines = this.state.wineData
+        const beers = this.state.beerData
         const isLoaded = this.state.isLoaded 
         let currentBeer = this.state.currentBeer
         return (
@@ -188,8 +180,8 @@ class App extends Component {
                         <Header />
                         <Route path='/home' component= { () => <Home beerData={beers} wineData={wines} isLoaded={isLoaded} component={ () => <PieChartHome beerData={beers} wineData={wines}/>}/>}/>  
                         <Route path='/about' component={About} />
-                        <Route path='/beer-list' component={ () => ( this.state.display === "a" ? <BeerList beerData={beers} handleDisplayChange={this.handleDisplayChange}  handleBeerDelete={this.handleBeerDelete} updateBevCard={this.updateBevCard} /> : <EditPost handleChange={this.handleChange} handleDisplayChangeBack={this.handleDisplayChangeBack} currentBeer={currentBeer} handleUpdateBeerCard={this.handleUpdateBeerCard}  /> ) } />
-                        <Route path='/wine-list' component={ () => <WineList wineData={wines} />} />
+                        <Route path='/beer-list' component={ () => (this.state.display === "a" ? <BeerList beerData={beers} handleDisplayChange={this.handleDisplayChange}  handleBeerDelete={this.handleBeerDelete} updateBevCard={this.updateBevCard} /> : <EditPost handleChange={this.handleChange} handleDisplayChangeBack={this.handleDisplayChangeBack} currentBeer={currentBeer} handleUpdateBeerCard={this.handleUpdateBeerCard}  /> ) } />
+                        <Route path='/wine-list' component={ () => (this.state.display === "a" ? <WineList wineData={wines} handleDisplayChange={this.handleDisplayChange} />: <EditWinePost /> )} />
                         <Route path='/add' component={ () => <Add beerData={beers} beerToTop={this.beerToTop} /> } />
                     </div>
                         <Footer />
