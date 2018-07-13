@@ -26,17 +26,6 @@ class AddBeer extends Component {
                 "content-type": "application/json"
             })
         })
-        .then(response => response.json())
-
-        .then(res => { 
-            let beerArray = this.props.beerData
-            let addedBeer = this.state
-            let giveKey = (addedBeer.key = res.Posted.id)
-            console.log(addedBeer.key);
-            // trying to set key to id 
-            console.log(giveKey);
-            this.props.beerToTop(beerArray, addedBeer, res.Posted)
-        })
         .catch(err => {
             console.error(err)
         })    
@@ -55,8 +44,8 @@ y
 
         return (
             <Fragment> 
-                <h4 className="form-title">Add your Beer!</h4>
                 <form onSubmit={this.handleSubmit}  className="form-container" key={this.id}>
+                <h4 className="form-title">Add your Beer!</h4>
                     <FormGroup>
                         <FormControl
                             type="text"

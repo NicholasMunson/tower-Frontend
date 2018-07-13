@@ -4,6 +4,8 @@
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 25px;
     margin: 2.5rem;
+    padding-top: 1rem;
+    font-family: 'Rokkitt', serif;
 }
 
 .btn-container, .container{

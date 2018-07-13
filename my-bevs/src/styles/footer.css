@@ -2,8 +2,10 @@
         position:sticky;
         bottom:0;
         width:100%;
-        height:60px;   
-        background:rgba(101,140,103,10)
+        height:77px;   
+        background-image: url("../styles/images/grape-vine-texture.jpg");
+        color: rgb(235, 234, 232);
+
 }
 .footer-content{
     display: flex;

@@ -7,3 +7,7 @@
     flex-direction: column;
     overflow: hidden;
 }
+
+h4{
+    font-family: 'Righteous', cursive;
+}

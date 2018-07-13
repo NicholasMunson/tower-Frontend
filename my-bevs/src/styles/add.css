@@ -1,4 +1,6 @@
 .form-container{
+    height: auto;
+    width: 100%;
     padding: 10px 10% 70px 10%;
     align-content: center;
     display: flex;
