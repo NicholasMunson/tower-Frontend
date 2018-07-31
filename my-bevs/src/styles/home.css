@@ -2,9 +2,11 @@
     display: flex;
     justify-content: center;
 }
+
 .btn{
     padding:1%
 }
+
 .home-container{
     overflow: scroll;
     background-image: url('./images/Burntshirt-Vineyard-Crest-of-the-Blue-Ridge.jpg')
@@ -19,6 +21,4 @@
     margin: 2.5rem;
     padding-top: 1rem;
     font-family: 'Rokkitt', serif;
-    
-
 }

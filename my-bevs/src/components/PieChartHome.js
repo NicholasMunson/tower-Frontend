@@ -7,7 +7,7 @@ const PieChartHome = (props) => {
     let beerLength = props.beerData.length
     let wineLength = props.wineData.length
 
-    const dumbDumbData = [
+    const data = [
         {
             value: beerLength,
             color: '#E38627'
@@ -29,7 +29,7 @@ const PieChartHome = (props) => {
                     <div className="color-key beer"></div>
                 </div>
             </div>
-            <PieChart className="pie-chart" data={dumbDumbData}/>
+            <PieChart className="pie-chart" data={data}/>
         </section>
     )
 

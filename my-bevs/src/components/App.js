@@ -124,7 +124,7 @@ class App extends Component {
                 [key]: value
             }
         })
-}
+    }
     updateWineCard = (wine) => {
         this.setState({
             currentWine:{

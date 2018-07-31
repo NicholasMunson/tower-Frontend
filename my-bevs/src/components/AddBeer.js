@@ -31,17 +31,17 @@ class AddBeer extends Component {
             console.error(err)
         })      
     }    
-sendDisplay= () => {
-    console.log(this.props, "it worked")
-    // this.props.handleDisplayChange("b")
-}
-    handleChange = (event) => {
-        const key = event.target.name
-        const value = event.target.value  
-        this.setState({
-            [key]: value
-        })
+    sendDisplay= () => {
+        console.log(this.props, "it worked")
+        // this.props.handleDisplayChange("b")
     }
+        handleChange = (event) => {
+            const key = event.target.name
+            const value = event.target.value  
+            this.setState({
+                [key]: value
+            })
+        }
 
     render() {
         return (
