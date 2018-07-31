@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import { FormGroup, FormControl, Button } from 'react-bootstrap'
+import { Redirect } from 'react-router-dom'
 import '../styles/add.css'
 class AddBeer extends Component {
     constructor(props){
@@ -25,12 +26,15 @@ class AddBeer extends Component {
             headers: new Headers({
                 "content-type": "application/json"
             })
-        })
+        }).then(this.sendDisplay())
         .catch(err => {
             console.error(err)
         })      
     }    
-
+sendDisplay= () => {
+    console.log(this.props, "it worked")
+    // this.props.handleDisplayChange("b")
+}
     handleChange = (event) => {
         const key = event.target.name
         const value = event.target.value  
@@ -42,7 +46,7 @@ class AddBeer extends Component {
     render() {
         return (
             <Fragment> 
-                <form onSubmit={this.handleSubmit}  className="form-container beer-form-container" key={this.id}>
+                <form onSubmit={() => {this.handleSubmit ; this.sendDisplay} }  className="form-container beer-form-container" key={this.id}>
                 <h4 className="form-title">Add your Beer!</h4>
                     <FormGroup>
                         <FormControl

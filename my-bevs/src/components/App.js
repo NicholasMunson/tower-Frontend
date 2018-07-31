@@ -257,7 +257,7 @@ class App extends Component {
                         <Route path='/about' component={About} />
                         <Route path='/beer-list' component={ () => (this.state.display === "a" ? <BeerList beerData={beers} handleDisplayChange={this.handleDisplayChange}  handleBeerDelete={this.handleBeerDelete} updateBevCard={this.updateBevCard} /> : <EditPost handleChange={this.handleChange} handleDisplayChangeBack={this.handleDisplayChangeBack} currentBeer={currentBeer} handleUpdateBeerCard={this.handleUpdateBeerCard}  /> ) } />
                         <Route path='/wine-list' component={ () => (this.state.display === "a" ? <WineList wineData={wines} handleDisplayChange={this.handleDisplayChange} handleWineDelete={this.handleWineDelete} updateWineCard={this.updateWineCard} />: <EditWinePost handleDisplayChange={this.handleDisplayChange} currentWine={currentWine} handleDisplayChange={this.handleDisplayChange} handleUpdateWineCard={this.handleUpdateWineCard} /> )} />
-                        <Route path='/add' component={ () => <Add beerData={beers} beerToTop={this.beerToTop} /> } />
+                        <Route path='/add' component={ () => (this.state.display=== "a" ? <Add beerData={beers} handleDisplayChange={this.handleDisplayChange} /> : <BeerList />) } />
                     </div>
                         <Footer />
                 </React.Fragment>

@@ -17,10 +17,11 @@ class Add extends Component {
     }
     
     render() {
+        console.log(this.props)
         let changeDisplay = this.state.display 
         return (
             <Fragment> 
-                {changeDisplay==="a" ? (<AddBeer handleChangeDisplay={this.handleChangeDisplay} />) :(<AddWine handleChangeDisplay={this.handleChangeDisplay} />) }
+                {changeDisplay==="a" ? (<AddBeer handleChangeDisplay={this.handleChangeDisplay} handleDisplayChange={this.props.handleDisplayChange} />) :(<AddWine handleChangeDisplay={this.handleChangeDisplay} />) }
             </Fragment>
         )
     }
