@@ -42,13 +42,6 @@ class CustomNavBar extends Component {
                             className='nav-item'>
                             Add-Bevs
                         </NavItem>
-                        <NavItem eventKey={4}
-                            componentClass={Link} 
-                            href='/about' 
-                            to='/about' 
-                            className='nav-item'>
-                            About
-                        </NavItem>
                     </Nav>
                 </Menu>
             </div>

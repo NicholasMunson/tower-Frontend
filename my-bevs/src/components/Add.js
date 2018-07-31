@@ -17,7 +17,6 @@ class Add extends Component {
     }
     
     render() {
-        console.log(this.props)
         let changeDisplay = this.state.display 
         return (
             <Fragment> 

@@ -247,14 +247,12 @@ class App extends Component {
         const isLoaded = this.state.isLoaded 
         let currentBeer = this.state.currentBeer
         let currentWine = this.state.currentWine
-        console.log(currentWine)
         return (
             <Router>
                 <React.Fragment> 
                     <div className='app-container'>
                         <Header />
                         <Route path='/home' component= { () => <Home beerData={beers} wineData={wines} isLoaded={isLoaded} component={ () => <PieChartHome beerData={beers} wineData={wines}/>}/>}/>  
-                        <Route path='/about' component={About} />
                         <Route path='/beer-list' component={ () => (this.state.display === "a" ? <BeerList beerData={beers} handleDisplayChange={this.handleDisplayChange}  handleBeerDelete={this.handleBeerDelete} updateBevCard={this.updateBevCard} /> : <EditPost handleChange={this.handleChange} handleDisplayChangeBack={this.handleDisplayChangeBack} currentBeer={currentBeer} handleUpdateBeerCard={this.handleUpdateBeerCard}  /> ) } />
                         <Route path='/wine-list' component={ () => (this.state.display === "a" ? <WineList wineData={wines} handleDisplayChange={this.handleDisplayChange} handleWineDelete={this.handleWineDelete} updateWineCard={this.updateWineCard} />: <EditWinePost handleDisplayChange={this.handleDisplayChange} currentWine={currentWine} handleDisplayChange={this.handleDisplayChange} handleUpdateWineCard={this.handleUpdateWineCard} /> )} />
                         <Route path='/add' component={ () => (this.state.display=== "a" ? <Add beerData={beers} handleDisplayChange={this.handleDisplayChange} /> : <BeerList />) } />

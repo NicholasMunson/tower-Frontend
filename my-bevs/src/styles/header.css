@@ -1,6 +1,7 @@
 .page-header{
     position: absolute;
     width: 100%;
+    height: 12%;
     color: black;
     background-image: url('../styles/images/vector-hop-plant-seamless-background.jpg');
     background-color: rgba(0, 0, 0, 0.5);
@@ -10,8 +11,6 @@
 .my-bevs-header{
     text-align: center;
     font-family: 'Righteous', cursive;
-    text-shadow:10px 10px 10px white;
-    
 }
 
 h1{
