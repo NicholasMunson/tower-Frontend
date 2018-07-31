@@ -10,6 +10,7 @@
 
 .card-container{
     background-image: url("../styles/images/BarelyGrowing.jpeg");
+    overflow: scroll;
     height: 100%;
     width: 100%;
     margin-top: 20%;
@@ -17,6 +18,7 @@
 
 .wine-card-container{
     background-image: url("../styles/images/vineyards-hero.jpg");
+    overflow: scroll;
     height: 100%;
     width: 100%;
     margin-top: 20%;

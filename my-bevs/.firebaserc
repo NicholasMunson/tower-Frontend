@@ -1,5 +1,6 @@
 {
   "projects": {
-    "mybevs": "my-bevs-43129"
+    "mybevs": "my-bevs-43129",
+    "default": "my-bevs"
   }
 }
