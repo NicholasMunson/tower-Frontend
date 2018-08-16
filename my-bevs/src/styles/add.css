@@ -9,13 +9,13 @@
 
 .beer-form-container{
     background-image: url('../styles/images/BarelyGrowing.jpeg');
-    margin-top: 21%;
+    margin-top: 85px;
 
 }
 
 .wine-form-container{
     background-image: url("../styles/images/vineyards-hero.jpg");
-    margin-top: 21%;
+    margin-top: 85px;
 }
 
 .form-title{

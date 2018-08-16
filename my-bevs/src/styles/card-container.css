@@ -1,35 +1,18 @@
-.card-container .wine-card-container{
+.card-container, .wine-card-container{
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
-    overflow: scroll;
-    padding-top: 0%;
-    padding-bottom: 10%;
+    padding-bottom: 80px;
+    margin-top: 85px;
 }
 
 .card-container{
     background-image: url("../styles/images/BarelyGrowing.jpeg");
     overflow: scroll;
-    height: 100%;
-    width: 100%;
-    margin-top: 20%;
 }
-@media only screen  and (min-width : 1224px) {
-        .card-container{
-            background-image: url("../styles/images/BarelyGrowing.jpeg");
-            overflow: scroll;
-            height: 100%;
-            width: 100%;
-            margin-top: 5%; 
-        }
-    }
 
 .wine-card-container{
     background-image: url("../styles/images/vineyards-hero.jpg");
     overflow: scroll;
-    height: 100%;
-    width: 100%;
-    margin-top: 20%;
-
 }
