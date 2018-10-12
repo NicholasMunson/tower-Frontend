@@ -8,17 +8,20 @@
 }
 
 .home-container{
+    margin-top: 55px;
+    height: 100%;
+    width: auto;
     overflow: scroll;
-    background-image: url('./images/Burntshirt-Vineyard-Crest-of-the-Blue-Ridge.jpg')
+    background-image: url('./images/Burntshirt-Vineyard-Crest-of-the-Blue-Ridge.jpg');
+    background-repeat: no-repeat;
 }
 
 .pie-chart-container{
-    margin: 8% 10% 8% 10%;
+    margin: -15% 10% 8% 10%;
     text-align: center;
     color: azure;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 25px;
-    margin: 2.5rem;
     padding-top: 1rem;
     font-family: 'Rokkitt', serif;
 }
