@@ -1,27 +1,27 @@
-.btn-toolbar{
-    display: flex;
-    justify-content: center;
+.btn-toolbar {
+  display: flex;
+  justify-content: center;
 }
 
-.btn{
-    padding:1%
+.btn {
+  padding: 1%;
 }
 
-.home-container{
-    margin-top: 55px;
-    height: 100%;
-    width: auto;
-    overflow: scroll;
-    background-image: url('./images/Burntshirt-Vineyard-Crest-of-the-Blue-Ridge.jpg');
-    background-repeat: no-repeat;
+.home-container {
+  margin-top: 55px;
+  height: 100%;
+  width: auto;
+  overflow: scroll;
+  background-image: url("./images/Burntshirt-Vineyard-Crest-of-the-Blue-Ridge.jpg");
+  background-repeat: no-repeat;
 }
 
-.pie-chart-container{
-    margin: -15% 10% 8% 10%;
-    text-align: center;
-    color: azure;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 25px;
-    padding-top: 1rem;
-    font-family: 'Rokkitt', serif;
+.pie-chart-container {
+  margin: -15% 10% 8% 10%;
+  text-align: center;
+  color: azure;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  padding-top: 1rem;
+  font-family: "Rokkitt", serif;
 }

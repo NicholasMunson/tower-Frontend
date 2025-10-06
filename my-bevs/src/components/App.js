@@ -6,6 +6,7 @@ import WineList from "./WineList";
 import Add from "./Add";
 import Footer from "./Footer";
 import Home from "./Home";
+import About from "./About";
 import EditPost from "./EditPost";
 import EditWinePost from "./EditWinePost";
 import "../styles/App.css";
@@ -197,6 +198,7 @@ const App = () => {
         <div className="app-container">
           <Header />
           <Routes>
+            <Route path="/" element={<About />} />
             <Route
               path="/home"
               element={
