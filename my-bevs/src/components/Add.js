@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
-import AddBeer from "./AddBeer.js";
-import AddWine from "./AddWine.js";
+import AddBeverage from "./AddBeverage.js";
+import "../styles/add.css";
 
 const Add = (props) => {
-  const [display, setDisplay] = useState("a");
+  const [display, setDisplay] = useState("beer");
 
   const handleChangeDisplay = (newDisplay) => {
     setDisplay(newDisplay);
@@ -11,14 +11,30 @@ const Add = (props) => {
 
   return (
     <Fragment>
-      {display === "a" ? (
-        <AddBeer
-          handleChangeDisplay={handleChangeDisplay}
-          handleDisplayChange={props.handleDisplayChange}
-        />
-      ) : (
-        <AddWine handleChangeDisplay={handleChangeDisplay} />
-      )}
+      <div
+        className={`add-container ${
+          display === "beer" ? "beer-background" : "wine-background"
+        }`}
+      >
+        <div className="tab-navigation">
+          <button
+            className={`tab-button ${display === "beer" ? "active" : ""}`}
+            onClick={() => handleChangeDisplay("beer")}
+          >
+            Add Beer
+          </button>
+          <button
+            className={`tab-button ${display === "wine" ? "active" : ""}`}
+            onClick={() => handleChangeDisplay("wine")}
+          >
+            Add Wine
+          </button>
+        </div>
+
+        <div className="tab-content">
+          <AddBeverage type={display} />
+        </div>
+      </div>
     </Fragment>
   );
 };

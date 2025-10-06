@@ -1,33 +1,194 @@
-.form-container{
-    height: 100%;
-    width: 100%;
-    padding: 10px 10% 70px 10%;
-    align-content: center;
-    display: flex;
-    flex-direction: column;
+.add-container {
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: scroll;
+  margin-top: 85px;
+  padding: 20px;
+  transition: background-image 0.3s ease;
 }
 
-.beer-form-container{
-    background-image: url('../styles/images/BarelyGrowing.jpeg');
-    margin-top: 85px;
-
+.beer-background {
+  background-image: url("../styles/images/BarelyGrowing.jpeg");
 }
 
-.wine-form-container{
-    background-image: url("../styles/images/vineyards-hero.jpg");
-    margin-top: 85px;
+.wine-background {
+  background-image: url("../styles/images/vineyards-hero.jpg");
 }
 
-.form-title{
-    padding-bottom: 10%;
-    text-align: center;
-
+.tab-navigation {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  margin: 0 10%;
+  border-radius: 25px 25px 0 0;
+  padding: 0;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
 }
 
-.form-btn{
-    margin: 1% 0%;
+.tab-button {
+  flex: 1;
+  padding: 1rem 2rem;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Rokkitt", serif;
+  border-radius: 25px 25px 0 0;
 }
 
-.form-group{
-    margin-bottom: 1%;    
+.tab-button:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  color: #007bff;
+}
+
+.tab-button.active {
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+.tab-content {
+  margin: 0 10% 20px 10%;
+  margin-top: 0;
+}
+
+.form-container {
+  height: 100%;
+  width: 100%;
+  padding: 0 0 70px 0;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  margin-top: 0;
+}
+
+.beer-form-container {
+  margin-top: 0;
+}
+
+.wine-form-container {
+  margin-top: 0;
+}
+
+.form-content {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 0 0 25px 25px;
+  padding: 2rem;
+  margin: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  font-family: "Rokkitt", serif;
+}
+
+.form-title {
+  padding-bottom: 10%;
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.form-btn {
+  margin: 1% 0%;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+}
+
+.form-group {
+  margin-bottom: 1%;
+}
+
+.form-control {
+  font-size: 1.1rem;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-select {
+  font-size: 1.1rem;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+}
+
+.form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+textarea.form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+@media (max-width: 768px) {
+  .add-container {
+    margin-top: 55px;
+  }
+
+  .tab-navigation {
+    margin: 0 5%;
+    border-radius: 15px 15px 0 0;
+    margin-bottom: 0;
+  }
+
+  .tab-button {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .tab-content {
+    margin: 0 5% 20px 5%;
+    margin-top: 0;
+  }
+
+  .form-content {
+    margin: 0;
+    padding: 1.5rem;
+    border-radius: 0 0 15px 15px;
+  }
+
+  .form-title {
+    font-size: 1.8rem;
+    padding-bottom: 5%;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+
+  .form-btn {
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-button {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .tab-content {
+    margin: 0 2% 20px 2%;
+    margin-top: 0;
+  }
 }
