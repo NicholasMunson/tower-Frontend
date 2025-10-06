@@ -1,5 +1,5 @@
 import React from "react";
-import WineCard from "./WineCard.js";
+import BeverageCard from "./BeverageCard.js";
 import "../styles/card-container.css";
 
 const WineList = (props) => {
@@ -25,18 +25,19 @@ const WineList = (props) => {
     );
   }
 
-  const wineCard = props.wineData.map((wine) => (
-    <WineCard
-      wine={wine}
-      handleDisplayChange={props.handleDisplayChange}
-      handleWineDelete={props.handleWineDelete}
-      updateWineCard={props.updateWineCard}
+  const wineCards = props.wineData.map((wine) => (
+    <BeverageCard
       key={wine.id}
+      beverage={wine}
+      type="wine"
+      handleDisplayChange={props.handleDisplayChange}
+      handleDelete={props.handleWineDelete}
+      handleUpdate={props.updateWineCard}
     />
   ));
-  const revWineCard = wineCard.reverse();
+  const revWineCards = wineCards.reverse();
 
-  return <div className="wine-card-container">{revWineCard}</div>;
+  return <div className="wine-card-container">{revWineCards}</div>;
 };
 
 export default WineList;

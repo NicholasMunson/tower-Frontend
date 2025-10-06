@@ -1,5 +1,5 @@
 import React from "react";
-import BeerCard from "./BeerCard.js";
+import BeverageCard from "./BeverageCard.js";
 import "../styles/card-container.css";
 
 const BeerList = (props) => {
@@ -25,17 +25,18 @@ const BeerList = (props) => {
     );
   }
 
-  const beerCard = props.beerData.map((beer) => (
-    <BeerCard
-      handleDisplayChange={props.handleDisplayChange}
-      handleBeerDelete={props.handleBeerDelete}
-      updateBevCard={props.updateBevCard}
-      beer={beer}
+  const beerCards = props.beerData.map((beer) => (
+    <BeverageCard
       key={beer.id}
+      beverage={beer}
+      type="beer"
+      handleDisplayChange={props.handleDisplayChange}
+      handleDelete={props.handleBeerDelete}
+      handleUpdate={props.updateBevCard}
     />
   ));
-  const revBeerCard = beerCard.reverse();
-  return <div className="card-container">{revBeerCard}</div>;
+  const revBeerCards = beerCards.reverse();
+  return <div className="card-container">{revBeerCards}</div>;
 };
 
 export default BeerList;
