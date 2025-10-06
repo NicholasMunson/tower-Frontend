@@ -1,29 +1,26 @@
-import React, {Component, Fragment} from 'react';
-import AddBeer from './AddBeer.js'
-import AddWine from './AddWine.js'
+import React, { Fragment, useState } from "react";
+import AddBeer from "./AddBeer.js";
+import AddWine from "./AddWine.js";
 
+const Add = (props) => {
+  const [display, setDisplay] = useState("a");
 
-class Add extends Component {
-    constructor(props){
-        super(props)
-        this.state ={
-            display: "a"
-        }
-    }
+  const handleChangeDisplay = (newDisplay) => {
+    setDisplay(newDisplay);
+  };
 
-    handleChangeDisplay = (display) => {
-        this.setState({display: display})
+  return (
+    <Fragment>
+      {display === "a" ? (
+        <AddBeer
+          handleChangeDisplay={handleChangeDisplay}
+          handleDisplayChange={props.handleDisplayChange}
+        />
+      ) : (
+        <AddWine handleChangeDisplay={handleChangeDisplay} />
+      )}
+    </Fragment>
+  );
+};
 
-    }
-    
-    render() {
-        let changeDisplay = this.state.display 
-        return (
-            <Fragment> 
-                { changeDisplay === "a" ? (<AddBeer handleChangeDisplay={this.handleChangeDisplay} handleDisplayChange={this.props.handleDisplayChange} />) :(<AddWine handleChangeDisplay={this.handleChangeDisplay} />) }
-            </Fragment>
-        )
-    }
-}
-
-export default Add
+export default Add;

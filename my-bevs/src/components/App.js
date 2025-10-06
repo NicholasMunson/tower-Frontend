@@ -1,268 +1,272 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import Header from './Header'
-import About from './About'
-import BeerList from './BeerList'
-import WineList from './WineList'
-import Add from './Add'
-import Footer from './Footer'
-import Home from './Home'
-import EditPost from './EditPost'
-import EditWinePost from './EditWinePost'
-import '../styles/App.css'
-import PieChartHome from './PieChartHome'
-const URL = "https://mybevs.herokuapp.com" 
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./Header";
+import BeerList from "./BeerList";
+import WineList from "./WineList";
+import Add from "./Add";
+import Footer from "./Footer";
+import Home from "./Home";
+import EditPost from "./EditPost";
+import EditWinePost from "./EditWinePost";
+import "../styles/App.css";
+import PieChartHome from "./PieChartHome";
+// const URL = "https://mybevs.herokuapp.com"
+const URL = "http://localhost:3000";
 
-class App extends Component {
-    constructor(props){
-        super(props)
-        this.state ={
-            beerData:[],
-            wineData:[],
-            isLoaded: false,
-            display:"a",
-            currentBeer:{
-            brewery:'',
-            name:'',           
-            style:'',            
-            rating:'',
-            ABV:'',          
-            notes:'',
-            id: ''
-            },
-            currentWine:{
-                winery:'',
-                region:'',           
-                style:'',            
-                rating:'',
-                ABV:'',          
-                notes:'',
-                id: ''
-                }           
-        }
-    
+const App = () => {
+  const [beerData, setBeerData] = useState([]);
+  const [wineData, setWineData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [display, setDisplay] = useState("a");
+  const [currentBeer, setCurrentBeer] = useState({
+    brewery: "",
+    name: "",
+    style: "",
+    rating: "",
+    ABV: "",
+    notes: "",
+    id: "",
+  });
+  const [currentWine, setCurrentWine] = useState({
+    winery: "",
+    region: "",
+    style: "",
+    rating: "",
+    ABV: "",
+    notes: "",
+    id: "",
+  });
+  const dataSet = () => {
+    setIsLoaded(false);
+    Promise.all([
+      fetch(`${URL}/beer`).then((response) => response.json()),
+      fetch(`${URL}/wine`).then((response) => response.json()),
+    ])
+      .then(([beerResponse, wineResponse]) => {
+        setBeerData(beerResponse.beer || []);
+        setWineData(wineResponse.wine || []);
+        setIsLoaded(true);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setIsLoaded(true); // Set to true even on error to show UI
+      });
+  };
+
+  useEffect(() => {
+    dataSet();
+  }, []);
+
+  const handleBeerDelete = (event, id) => {
+    event.preventDefault();
+    fetch(`${URL}/beer/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response)
+      .then(handleErrors)
+      .then(dataSet());
+  };
+
+  const handleWineDelete = (event, id) => {
+    event.preventDefault();
+    fetch(`${URL}/wine/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response)
+      .then(handleErrors)
+      .then(dataSet());
+  };
+
+  const handleErrors = (response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
     }
-    componentDidMount = () => {
-        this.dataSet()
-    }
+    return response;
+  };
 
-    dataSet = () => {
-        fetch(`${URL}/beer`)
-        .then(response => response.json())
-        .then(beer => {
-            this.setState({
-                beerData:beer.beer
-            })
-        })
-        fetch(`${URL}/wine`)
-        .then(response => response.json())
-        .then(wine => this.setState({
-            wineData:wine.wine
-        }))
-    }
+  const handleDisplayChange = (display) => {
+    setDisplay(display);
+  };
 
-    handleBeerDelete = (event, id) =>{
-        event.preventDefault()
-        fetch(`${URL}/beer/${id}`,{
-            method:"DELETE",
-            headers:{
-                "Content-Type": "application/json"
-            }
-        })
-        .then(response => response)
-        .then(this.handleErrors)
-        .then(this.dataSet())
+  const handleDisplayChangeBack = () => {
+    setDisplay("a");
+  };
 
-    }
+  const handleChange = (event) => {
+    event.preventDefault();
+    const key = event.target.name;
+    const value = event.target.value;
+    setCurrentBeer({
+      ...currentBeer,
+      [key]: value,
+    });
+    setCurrentWine({
+      ...currentWine,
+      [key]: value,
+    });
+  };
+  const updateWineCard = (wine) => {
+    setCurrentWine({
+      winery: `${wine.winery}`,
+      region: `${wine.name}`,
+      style: `${wine.style}`,
+      rating: `${wine.rating}`,
+      ABV: `${wine.ABV}`,
+      notes: `${wine.notes}`,
+      id: `${wine.id}`,
+    });
+  };
 
-    handleWineDelete = (event, id) =>{
-        event.preventDefault()
-        fetch(`${URL}/wine/${id}`,{
-            method:"DELETE",
-            headers:{
-                "Content-Type": "application/json"
-            }
-        })
-        .then(response => response)
-        .then(this.handleErrors)
-        .then(this.dataSet())
-    }
+  const updateBevCard = (beer) => {
+    setCurrentBeer({
+      brewery: `${beer.brewery}`,
+      name: `${beer.name}`,
+      style: `${beer.style}`,
+      rating: `${beer.rating}`,
+      ABV: `${beer.ABV}`,
+      notes: `${beer.notes}`,
+      id: `${beer.id}`,
+    });
+  };
 
-    handleErrors(response) {
-        if (!response.ok) {
-            throw new Error(response.statusText)
-        }
-        return response
-    }
+  const handleUpdateBeerCard = (event, id) => {
+    event.preventDefault();
+    let updateUrl = `${URL}/beer/${id}`;
+    const data = new FormData(event.target);
 
-    handleDisplayChange = (display) => {
-        this.setState({
-            display: display
-        })
-        
-    }
+    fetch(updateUrl, {
+      method: "PUT",
+      body: JSON.stringify({
+        brewery: data.get("brewery"),
+        name: data.get("name"),
+        style: data.get("style"),
+        rating: data.get("rating"),
+        ABV: data.get("ABV"),
+        notes: data.get("notes"),
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response)
+      .then(handleErrors)
+      .catch((err) => {
+        console.error(err);
+      })
+      .then(dataSet);
+  };
 
-    handleDisplayChangeBack = () => {
-        this.setState({
-            display: "a"
-        })
-    }
+  const handleUpdateWineCard = (event, id) => {
+    event.preventDefault();
+    let updateUrl = `${URL}/wine/${id}`;
+    const data = new FormData(event.target);
 
-    handleChange = (event) => {
-    event.preventDefault()
-    const key = event.target.name
-    const value = event.target.value
-        this.setState({
-            currentBeer: {
-                ...this.state.currentBeer,
-                [key]: value
-            }
-        })
-        this.setState({
-            currentWine: {
-                ...this.state.currentBeer,
-                [key]: value
-            }
-        })
-    }
-    updateWineCard = (wine) => {
-        this.setState({
-            currentWine:{
-            winery: `${wine.winery}`,
-            region: `${wine.name}`,
-            style: `${wine.style}`,
-            rating: `${wine.rating}`,
-            ABV: `${wine.ABV}`,
-            notes: `${wine.notes}`,
-            id: `${wine.id}`
-            }
-        })
+    fetch(updateUrl, {
+      method: "PUT",
+      body: JSON.stringify({
+        winery: data.get("winery"),
+        region: data.get("region"),
+        style: data.get("style"),
+        rating: data.get("rating"),
+        ABV: data.get("ABV"),
+        notes: data.get("notes"),
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response)
+      .then(handleErrors)
+      .catch((err) => {
+        console.error(err);
+      })
+      .then(dataSet);
+  };
 
-    }
-    updateBevCard = (beer) => {
-        this.setState({
-            currentBeer:{
-            brewery: `${beer.brewery}`,
-            name: `${beer.name}`,
-            style: `${beer.style}`,
-            rating: `${beer.rating}`,
-            ABV: `${beer.ABV}`,
-            notes: `${beer.notes}`,
-            id: `${beer.id}`
-            }
-        })
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault()
-        const body = JSON.stringify(this.state)
-
-            fetch("https://mybevs.herokuapp.com/beer", {
-                method: "PUT",
-                body: body,
-                headers: new Headers({"content-type": "application/json"})
-            })
-            .then(response => response)
-            .then(this.handleErrors)  
-            .catch(err => {
-                console.error(err)
-            })
-        }
-
-        handleWineSubmit = (event) => {
-            event.preventDefault()
-            const body = JSON.stringify(this.state)
-    
-                fetch("https://mybevs.herokuapp.com/wine", {
-                    method: "PUT",
-                    body: body,
-                    headers: new Headers({"content-type": "application/json"})
-                })
-                .then(response => response)
-                .then(this.handleErrors)  
-                .catch(err => {
-                    console.error(err)
-                })
-            }
-
-    handleUpdateBeerCard = (event, id) => {
-        event.preventDefault()
-        let updateUrl =`${URL}/beer/${id}`
-        const data = new FormData(event.target)
-
-        fetch(updateUrl,{
-            method:"PUT",
-            body: JSON.stringify({
-            brewery: data.get("brewery"),
-            name: data.get("name"),
-            style: data.get("style"),
-            rating: data.get("rating"),
-            ABV: data.get("ABV"),
-            notes: data.get("notes") 
-            }),
-            headers: {
-                'Accept': 'application/json',
-                "Content-Type": "application/json"
-            }
-        })
-        .then(response => response)
-        .then(this.handleErrors)
-        .catch(err => {
-            console.error(err)
-        })
-        .then(this.dataSet)
-    }   
-
-    handleUpdateWineCard = (event, id) => {
-        event.preventDefault()
-        let updateUrl =`${URL}/wine/${id}`
-        const data = new FormData(event.target)
-
-        fetch(updateUrl,{
-            method:"PUT",
-            body: JSON.stringify({
-            winery: data.get("winery"),
-            region: data.get("region"),
-            style: data.get("style"),
-            rating: data.get("rating"),
-            ABV: data.get("ABV"),
-            notes: data.get("notes") 
-            }),
-            headers: {
-                'Accept': 'application/json',
-                "Content-Type": "application/json"
-            }
-        })
-        .then(response => response)
-        .then(this.handleErrors)
-        .catch(err => {
-            console.error(err)
-        })
-        .then(this.dataSet)
-    } 
-
-    render() {
-        const wines = this.state.wineData
-        const beers = this.state.beerData
-        const isLoaded = this.state.isLoaded 
-        let currentBeer = this.state.currentBeer
-        let currentWine = this.state.currentWine
-        return (
-            <Router>
-                <React.Fragment> 
-                    <div className='app-container'>
-                        <Header />
-                        <Route path='/home' component= { () => <Home beerData={beers} wineData={wines} isLoaded={isLoaded} component={ () => <PieChartHome beerData={beers} wineData={wines}/>}/>}/>  
-                        <Route path='/beer-list' component={ () => (this.state.display === "a" ? <BeerList beerData={beers} handleDisplayChange={this.handleDisplayChange}  handleBeerDelete={this.handleBeerDelete} updateBevCard={this.updateBevCard} /> : <EditPost handleChange={this.handleChange} handleDisplayChangeBack={this.handleDisplayChangeBack} currentBeer={currentBeer} handleUpdateBeerCard={this.handleUpdateBeerCard}  /> ) } />
-                        <Route path='/wine-list' component={ () => (this.state.display === "a" ? <WineList wineData={wines} handleDisplayChange={this.handleDisplayChange} handleWineDelete={this.handleWineDelete} updateWineCard={this.updateWineCard} />: <EditWinePost handleDisplayChange={this.handleDisplayChange} currentWine={currentWine} handleDisplayChange={this.handleDisplayChange} handleUpdateWineCard={this.handleUpdateWineCard} /> )} />
-                        <Route path='/add' component={ () => (this.state.display=== "a" ? <Add beerData={beers} handleDisplayChange={this.handleDisplayChange} /> : <BeerList />) } />
-                    </div>
-                        <Footer />
-                </React.Fragment>
-            </Router>
-        )
-    } 
-    
-}
+  return (
+    <Router>
+      <React.Fragment>
+        <div className="app-container">
+          <Header />
+          <Routes>
+            <Route
+              path="/home"
+              element={
+                <Home
+                  beerData={beerData}
+                  wineData={wineData}
+                  isLoaded={isLoaded}
+                />
+              }
+            />
+            <Route
+              path="/beer-list"
+              element={
+                display === "a" ? (
+                  <BeerList
+                    beerData={beerData}
+                    isLoaded={isLoaded}
+                    handleDisplayChange={handleDisplayChange}
+                    handleBeerDelete={handleBeerDelete}
+                    updateBevCard={updateBevCard}
+                  />
+                ) : (
+                  <EditPost
+                    handleChange={handleChange}
+                    handleDisplayChangeBack={handleDisplayChangeBack}
+                    currentBeer={currentBeer}
+                    handleUpdateBeerCard={handleUpdateBeerCard}
+                  />
+                )
+              }
+            />
+            <Route
+              path="/wine-list"
+              element={
+                display === "a" ? (
+                  <WineList
+                    wineData={wineData}
+                    isLoaded={isLoaded}
+                    handleDisplayChange={handleDisplayChange}
+                    handleWineDelete={handleWineDelete}
+                    updateWineCard={updateWineCard}
+                  />
+                ) : (
+                  <EditWinePost
+                    handleDisplayChange={handleDisplayChange}
+                    currentWine={currentWine}
+                    handleUpdateWineCard={handleUpdateWineCard}
+                  />
+                )
+              }
+            />
+            <Route
+              path="/add"
+              element={
+                display === "a" ? (
+                  <Add
+                    beerData={beerData}
+                    handleDisplayChange={handleDisplayChange}
+                  />
+                ) : (
+                  <BeerList />
+                )
+              }
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </React.Fragment>
+    </Router>
+  );
+};
 
 export default App;

@@ -1,77 +1,95 @@
-import React, {Fragment, Component} from 'react';
-import {FormGroup, FormControl, Button} from 'react-bootstrap'
-import '../styles/add.css'
+import React, { Fragment } from "react";
+import { Form, Button } from "react-bootstrap";
+import "../styles/add.css";
 
-class EditPost extends Component{
-    render(){
-        let currentBeer = this.props.currentBeer
-        return (
-            <Fragment>
-                <form
-                    onSubmit={ (event) => {{this.props.handleDisplayChangeBack("a")}; {this.props.handleUpdateBeerCard(event, currentBeer.id )}}}
-                    className="form-container beer-form-container"
-                    key={this.id}>
-                    <h4 className="form-title">Edit your Bev</h4>
-                    <FormGroup>
-                        <FormControl
-                            type="text"
-                            defaultValue={currentBeer.brewery}
-                            placeholder="Brewery Name"
-                            onChange={this.handleChange}
-                            required="required"
-                            name="brewery"/>
-                        <FormControl 
-                            type="text" 
-                            defaultValue={currentBeer.name} 
-                            placeholder="Beer Name"
-                            onChange={this.handleChange}
-                            required="required" name="name"/>
-                        <FormControl
-                            type="text"
-                            defaultValue={currentBeer.style}
-                            placeholder="Style"
-                            onChange={this.handleChange}
-                            required="required"
-                            name="style"/>
-                        <FormControl
-                            type="number"
-                            step="any"
-                            defaultValue={currentBeer.ABV}
-                            placeholder="ABV"
-                            onChange={this.handleChange}
-                            required="required"
-                            name="ABV"/>
-                        <FormGroup controlId="formControlsSelect">
-                            <FormControl
-                                required="required"
-                                componentClass="select"
-                                defaultValue={currentBeer.rating}
-                                onChange={this.handleChange}
-                                name="rating">
-                                <option type='text' default="default">Beer Rating</option>
-                                <option type='number' value="1">1</option>
-                                <option type='number' value="2">2</option>
-                                <option type='number' value="3">3</option>
-                                <option type='number' value="4">4</option>
-                                <option type='number' value="5">5</option>
-                            </FormControl>
-                            <FormControl
-                                type="text"
-                                componentClass="textarea"
-                                name="notes"
-                                onChange={this.handleChange}
-                                defaultValue={currentBeer.notes}
-                                placeholder="Notes"/>
-                        </FormGroup>
-                    </FormGroup>
-                    <Button className="btn-primary form-btn" type="submit">Submit</Button>
-                    <Button
-                        className="btn-primary form-btn"
-                        onClick={() => this.props.handleDisplayChangeBack('a')}>Back</Button>
-                </form>
-            </Fragment>
-        )
-    }
-}
+const EditPost = (props) => {
+  const currentBeer = props.currentBeer;
 
-export default EditPost
+  const handleChange = (event) => {
+    props.handleChange(event);
+  };
+
+  return (
+    <Fragment>
+      <form
+        onSubmit={(event) => {
+          props.handleDisplayChangeBack("a");
+          props.handleUpdateBeerCard(event, currentBeer.id);
+        }}
+        className="form-container beer-form-container"
+        key={props.id}
+      >
+        <h4 className="form-title">Edit your Bev</h4>
+        <Form.Group className="mb-3">
+          <Form.Control
+            type="text"
+            defaultValue={currentBeer.brewery}
+            placeholder="Brewery Name"
+            onChange={handleChange}
+            required
+            name="brewery"
+          />
+          <Form.Control
+            type="text"
+            defaultValue={currentBeer.name}
+            placeholder="Beer Name"
+            onChange={handleChange}
+            required
+            name="name"
+          />
+          <Form.Control
+            type="text"
+            defaultValue={currentBeer.style}
+            placeholder="Style"
+            onChange={handleChange}
+            required
+            name="style"
+          />
+          <Form.Control
+            type="number"
+            step="any"
+            defaultValue={currentBeer.ABV}
+            placeholder="ABV"
+            onChange={handleChange}
+            required
+            name="ABV"
+          />
+          <Form.Group controlId="formControlsSelect">
+            <Form.Select
+              required
+              defaultValue={currentBeer.rating}
+              onChange={handleChange}
+              name="rating"
+            >
+              <option value="">Beer Rating</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </Form.Select>
+            <Form.Control
+              as="textarea"
+              name="notes"
+              onChange={handleChange}
+              defaultValue={currentBeer.notes}
+              placeholder="Notes"
+            />
+          </Form.Group>
+        </Form.Group>
+        <Button variant="primary" className="form-btn" type="submit">
+          Submit
+        </Button>
+        <Button
+          variant="primary"
+          className="form-btn"
+          onClick={() => props.handleDisplayChangeBack("a")}
+        >
+          Back
+        </Button>
+      </form>
+    </Fragment>
+  );
+};
+
+export default EditPost;

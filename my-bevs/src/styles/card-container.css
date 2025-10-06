@@ -1,18 +1,48 @@
-.card-container, .wine-card-container{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    padding-bottom: 80px;
-    margin-top: 85px;
+.card-container,
+.wine-card-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 80px;
+  margin-top: 85px;
 }
 
-.card-container{
-    background-image: url("../styles/images/BarelyGrowing.jpeg");
-    overflow: scroll;
+.card-container {
+  background-image: url("../styles/images/BarelyGrowing.jpeg");
+  overflow: scroll;
 }
 
-.wine-card-container{
-    background-image: url("../styles/images/vineyards-hero.jpg");
-    overflow: scroll;
+.wine-card-container {
+  background-image: url("../styles/images/vineyards-hero.jpg");
+  overflow: scroll;
+}
+
+.loading-message,
+.empty-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 20px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.loading-message h3,
+.empty-message h3 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.loading-message p,
+.empty-message p {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
 }
