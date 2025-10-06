@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { API_ENDPOINTS } from "../config/api";
 import "../styles/add.css";
 
 const AddBeverage = ({ type }) => {
@@ -42,9 +43,7 @@ const AddBeverage = ({ type }) => {
         };
 
     const body = JSON.stringify(submitData);
-    const url = isBeer
-      ? "https://mybevs.herokuapp.com/beer"
-      : "https://mybevs.herokuapp.com/wine";
+    const url = isBeer ? API_ENDPOINTS.BEER.POST() : API_ENDPOINTS.WINE.POST();
 
     fetch(url, {
       method: "POST",

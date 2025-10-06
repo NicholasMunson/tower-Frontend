@@ -9,10 +9,9 @@ import Home from "./Home";
 import About from "./About";
 import EditPost from "./EditPost";
 import EditWinePost from "./EditWinePost";
+import { API_ENDPOINTS } from "../config/api";
 import "../styles/App.css";
 import PieChartHome from "./PieChartHome";
-// const URL = "https://mybevs.herokuapp.com"
-const URL = "http://localhost:3000";
 
 const App = () => {
   const [beerData, setBeerData] = useState([]);
@@ -40,8 +39,8 @@ const App = () => {
   const dataSet = () => {
     setIsLoaded(false);
     Promise.all([
-      fetch(`${URL}/beer`).then((response) => response.json()),
-      fetch(`${URL}/wine`).then((response) => response.json()),
+      fetch(API_ENDPOINTS.BEER.GET()).then((response) => response.json()),
+      fetch(API_ENDPOINTS.WINE.GET()).then((response) => response.json()),
     ])
       .then(([beerResponse, wineResponse]) => {
         setBeerData(beerResponse.beer || []);
@@ -60,7 +59,7 @@ const App = () => {
 
   const handleBeerDelete = (event, id) => {
     event.preventDefault();
-    fetch(`${URL}/beer/${id}`, {
+    fetch(API_ENDPOINTS.BEER.DELETE(id), {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +72,7 @@ const App = () => {
 
   const handleWineDelete = (event, id) => {
     event.preventDefault();
-    fetch(`${URL}/wine/${id}`, {
+    fetch(API_ENDPOINTS.WINE.DELETE(id), {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -138,10 +137,9 @@ const App = () => {
 
   const handleUpdateBeerCard = (event, id) => {
     event.preventDefault();
-    let updateUrl = `${URL}/beer/${id}`;
     const data = new FormData(event.target);
 
-    fetch(updateUrl, {
+    fetch(API_ENDPOINTS.BEER.PUT(id), {
       method: "PUT",
       body: JSON.stringify({
         brewery: data.get("brewery"),
@@ -166,10 +164,9 @@ const App = () => {
 
   const handleUpdateWineCard = (event, id) => {
     event.preventDefault();
-    let updateUrl = `${URL}/wine/${id}`;
     const data = new FormData(event.target);
 
-    fetch(updateUrl, {
+    fetch(API_ENDPOINTS.WINE.PUT(id), {
       method: "PUT",
       body: JSON.stringify({
         winery: data.get("winery"),
