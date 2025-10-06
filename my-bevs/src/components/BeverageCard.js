@@ -28,16 +28,18 @@ const BeverageCard = (props) => {
 
   return (
     <div className={cardClass}>
-      <p className={type === "beer" ? "brewery" : "winery"}>
-        {fieldData.primaryField.label}: {fieldData.primaryField.value}
-      </p>
-      <p className={type === "beer" ? "name" : "region"}>
-        {fieldData.secondaryField.label}: {fieldData.secondaryField.value}
-      </p>
-      <p className="style">Style: {fieldData.style}</p>
-      <p className="ABV">ABV: {fieldData.abv}</p>
-      <p className="rating">Rating: {fieldData.rating}</p>
-      <p className="notes">Notes: {fieldData.notes}</p>
+      <div className="card-content">
+        <p className={type === "beer" ? "brewery" : "winery"}>
+          {fieldData.primaryField.label}: {fieldData.primaryField.value}
+        </p>
+        <p className={type === "beer" ? "name" : "region"}>
+          {fieldData.secondaryField.label}: {fieldData.secondaryField.value}
+        </p>
+        <p className="style">Style: {fieldData.style}</p>
+        <p className="ABV">ABV: {fieldData.abv}</p>
+        <p className="rating">Rating: {fieldData.rating}</p>
+        <p className="notes">Notes: {fieldData.notes}</p>
+      </div>
       <div className="btn-container">
         <Row xs={12} md={12} className="btn-row">
           <Col>

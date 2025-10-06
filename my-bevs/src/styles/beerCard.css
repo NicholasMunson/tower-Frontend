@@ -1,18 +1,97 @@
-.beer-card, .wine-card {
-    text-align: center;
-    color: azure;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 25px;
-    margin: 2.5rem;
-    padding-top: 1rem;
-    font-family: 'Rokkitt', serif;
+.beer-card,
+.wine-card {
+  text-align: center;
+  color: azure;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  margin: 0;
+  padding: 1rem;
+  font-family: "Rokkitt", serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.beer-card:hover,
+.wine-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 /* @media all and (min-width:) */
 
-.btn-container, .container{
-    padding-bottom: .7rem;
+.btn-container,
+.container {
+  padding-bottom: 0.7rem;
 }
 
-.btn{
-    margin: .5rem;
+.btn {
+  margin: 0.5rem;
+}
+
+/* Card content styling */
+.beer-card p,
+.wine-card p {
+  margin: 0.5rem 0;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* Card content wrapper */
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Button container stays at bottom */
+.btn-container {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+/* Responsive typography */
+@media (min-width: 768px) {
+  .beer-card p,
+  .wine-card p {
+    font-size: 18px;
+    margin: 0.4rem 0;
+  }
+
+  .beer-card,
+  .wine-card {
+    padding: 0.8rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .beer-card p,
+  .wine-card p {
+    font-size: 18px;
+    margin: 0.3rem 0;
+  }
+
+  .beer-card,
+  .wine-card {
+    padding: 0.7rem;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .beer-card,
+  .wine-card {
+    margin: 0.5rem 0;
+    padding: 1.2rem;
+  }
+
+  .beer-card p,
+  .wine-card p {
+    font-size: 16px;
+    margin: 0.6rem 0;
+  }
 }

@@ -1,11 +1,32 @@
 .card-container,
 .wine-card-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
   width: 100%;
   height: 100%;
+  padding: 1rem;
   padding-bottom: 80px;
   margin-top: 85px;
+}
+
+/* Tablet and larger screens - 3 cards per row */
+@media (min-width: 768px) {
+  .card-container,
+  .wine-card-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Large desktop screens - 4 cards per row */
+@media (min-width: 1200px) {
+  .card-container,
+  .wine-card-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
 }
 
 .card-container {
