@@ -9,11 +9,15 @@ function Header(props) {
       <Container fluid className="page-header">
         <Row>
           <Col>
-            <div className="my-bevs-header">My Bevs</div>
-            <CustomNavBar textColorChange={props.textColorChange} />
+            <div className="my-bevs-header">
+              <div className="header-text">My Bevs</div>
+            </div>
           </Col>
         </Row>
       </Container>
+      <div className="header-menu">
+      </div>
+        <CustomNavBar textColorChange={props.textColorChange} />
     </div>
   );
 }
