@@ -5,7 +5,7 @@ const isDevelopment = process.env.NODE_ENV === "development";
 const DEV_BASE_URL = "http://localhost:3000";
 
 // Production URLs (dummy/placeholder URLs)
-const PROD_BASE_URL = "https://mybevs.herokuapp.com";
+const PROD_BASE_URL = "https://my-bevs-node-backend.onrender.com";
 
 // Export the appropriate base URL
 export const BASE_URL = isDevelopment ? DEV_BASE_URL : PROD_BASE_URL;
