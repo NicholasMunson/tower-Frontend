@@ -7,8 +7,7 @@ import Add from "./Add";
 import Footer from "./Footer";
 import Home from "./Home";
 import About from "./About";
-import EditPost from "./EditPost";
-import EditWinePost from "./EditWinePost";
+import EditBeverage from "./EditBeverage";
 import { API_ENDPOINTS } from "../config/api";
 import "../styles/App.css";
 import PieChartHome from "./PieChartHome";
@@ -218,11 +217,12 @@ const App = () => {
                     updateBevCard={updateBevCard}
                   />
                 ) : (
-                  <EditPost
+                  <EditBeverage
+                    type="beer"
+                    currentBeverage={currentBeer}
                     handleChange={handleChange}
+                    handleUpdate={handleUpdateBeerCard}
                     handleDisplayChangeBack={handleDisplayChangeBack}
-                    currentBeer={currentBeer}
-                    handleUpdateBeerCard={handleUpdateBeerCard}
                   />
                 )
               }
@@ -239,10 +239,12 @@ const App = () => {
                     updateWineCard={updateWineCard}
                   />
                 ) : (
-                  <EditWinePost
-                    handleDisplayChange={handleDisplayChange}
-                    currentWine={currentWine}
-                    handleUpdateWineCard={handleUpdateWineCard}
+                  <EditBeverage
+                    type="wine"
+                    currentBeverage={currentWine}
+                    handleChange={handleChange}
+                    handleUpdate={handleUpdateWineCard}
+                    handleDisplayChangeBack={handleDisplayChangeBack}
                   />
                 )
               }
