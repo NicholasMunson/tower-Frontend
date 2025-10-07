@@ -33,6 +33,7 @@ const BeerList = (props) => {
       handleEditClick={props.handleEditClick}
       handleDelete={props.handleBeerDelete}
       handleUpdate={props.updateBevCard}
+      handleDeleteClick={props.handleDeleteClick}
     />
   ));
   const revBeerCards = beerCards.reverse();

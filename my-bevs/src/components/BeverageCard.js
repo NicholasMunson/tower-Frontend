@@ -3,7 +3,14 @@ import { Button, Row, Col } from "react-bootstrap";
 import "../styles/beerCard.css";
 
 const BeverageCard = (props) => {
-  const { beverage, type, handleEditClick, handleDelete, handleUpdate } = props;
+  const {
+    beverage,
+    type,
+    handleEditClick,
+    handleDelete,
+    handleUpdate,
+    handleDeleteClick,
+  } = props;
 
   // Determine field labels and values based on beverage type
   const getFieldData = () => ({
@@ -52,8 +59,8 @@ const BeverageCard = (props) => {
             </Button>
             <Button
               variant="danger"
-              onClick={(event) => {
-                handleDelete(event, fieldData.id);
+              onClick={() => {
+                handleDeleteClick(beverage, type);
               }}
             >
               Delete

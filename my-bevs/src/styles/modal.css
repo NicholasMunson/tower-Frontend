@@ -145,6 +145,78 @@
   border-color: #5a6268;
 }
 
+/* Delete Confirmation Modal Styles */
+.delete-confirmation-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.delete-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.delete-message {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.beverage-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border-left: 4px solid #dc3545;
+}
+
+.delete-warning {
+  font-size: 0.9rem;
+  color: #dc3545;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.delete-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.delete-buttons .btn {
+  min-width: 100px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-buttons .btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.delete-buttons .btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.delete-buttons .btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-buttons .btn-danger:hover {
+  background-color: #c82333;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .modal-container {
@@ -164,5 +236,15 @@
   .modal-body .btn {
     font-size: 14px;
     padding: 8px 16px;
+  }
+
+  .delete-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .delete-buttons .btn {
+    width: 100%;
+    max-width: 200px;
   }
 }

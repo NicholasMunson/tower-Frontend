@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import Home from "./Home";
 import About from "./About";
 import EditModal from "./EditModal";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import { API_ENDPOINTS } from "../config/api";
 import "../styles/App.css";
 import PieChartHome from "./PieChartHome";
@@ -20,6 +21,9 @@ const App = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingBeverage, setEditingBeverage] = useState(null);
   const [editingType, setEditingType] = useState("beer");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deletingBeverage, setDeletingBeverage] = useState(null);
+  const [deletingType, setDeletingType] = useState("beer");
   const [currentBeer, setCurrentBeer] = useState({
     brewery: "",
     name: "",
@@ -109,6 +113,26 @@ const App = () => {
   const handleCloseModal = () => {
     setShowEditModal(false);
     setEditingBeverage(null);
+  };
+
+  const handleDeleteClick = (beverage, type) => {
+    setDeletingBeverage(beverage);
+    setDeletingType(type);
+    setShowDeleteModal(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setShowDeleteModal(false);
+    setDeletingBeverage(null);
+  };
+
+  const handleConfirmDelete = () => {
+    if (deletingType === "beer") {
+      handleBeerDelete({ preventDefault: () => {} }, deletingBeverage.id);
+    } else {
+      handleWineDelete({ preventDefault: () => {} }, deletingBeverage.id);
+    }
+    handleCloseDeleteModal();
   };
 
   const handleChange = (event) => {
@@ -229,6 +253,7 @@ const App = () => {
                   handleBeerDelete={handleBeerDelete}
                   updateBevCard={updateBevCard}
                   handleEditClick={handleEditClick}
+                  handleDeleteClick={handleDeleteClick}
                 />
               }
             />
@@ -242,6 +267,7 @@ const App = () => {
                   handleWineDelete={handleWineDelete}
                   updateWineCard={updateWineCard}
                   handleEditClick={handleEditClick}
+                  handleDeleteClick={handleDeleteClick}
                 />
               }
             />
@@ -272,6 +298,17 @@ const App = () => {
                 : handleUpdateWineCard
             }
             handleDisplayChangeBack={handleCloseModal}
+          />
+        )}
+
+        {/* Delete Confirmation Modal */}
+        {deletingBeverage && (
+          <DeleteConfirmationModal
+            show={showDeleteModal}
+            onHide={handleCloseDeleteModal}
+            onConfirm={handleConfirmDelete}
+            beverageName={deletingBeverage.name || deletingBeverage.winery}
+            beverageType={deletingType}
           />
         )}
       </React.Fragment>
