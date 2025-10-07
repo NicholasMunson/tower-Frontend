@@ -34,7 +34,7 @@
   width: 137px;
   height: 55.71px;
   right: 0%;
-  top: 1.9%;
+  top: 1.49%;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
@@ -42,6 +42,16 @@
   padding: 10px 20px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .header-menu {
+    display: none;
+    width: 70px;
+    height: 55.71px;
+    right: 0%;
+    top: 1.9%;
+  }
 }
 
 .header-text {

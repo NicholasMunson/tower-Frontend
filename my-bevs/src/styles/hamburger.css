@@ -91,3 +91,9 @@
   box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
   border-left: 3px solid #ffffff;
 }
+
+@media (max-width: 768px) {
+  .bm-burger-bars {
+    background: black;
+  }
+}
