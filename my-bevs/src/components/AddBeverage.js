@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { API_ENDPOINTS } from "../config/api";
 import "../styles/add.css";
 
-const AddBeverage = ({ type }) => {
+const AddBeverage = ({ type, onBeverageAdded }) => {
   const isBeer = type === "beer";
 
   const [formData, setFormData] = useState({
@@ -65,6 +65,10 @@ const AddBeverage = ({ type }) => {
           ABV: "",
           notes: "",
         });
+        // Refresh the data in parent component
+        if (onBeverageAdded) {
+          onBeverageAdded();
+        }
       })
       .catch((err) => {
         console.error(err);

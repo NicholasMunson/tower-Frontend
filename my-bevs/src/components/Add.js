@@ -32,7 +32,7 @@ const Add = (props) => {
         </div>
 
         <div className="tab-content">
-          <AddBeverage type={display} />
+          <AddBeverage type={display} onBeverageAdded={props.onBeverageAdded} />
         </div>
       </div>
     </Fragment>

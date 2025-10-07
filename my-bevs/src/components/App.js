@@ -73,7 +73,7 @@ const App = () => {
     })
       .then((response) => response)
       .then(handleErrors)
-      .then(dataSet());
+      .then(dataSet);
   };
 
   const handleWineDelete = (event, id) => {
@@ -86,7 +86,7 @@ const App = () => {
     })
       .then((response) => response)
       .then(handleErrors)
-      .then(dataSet());
+      .then(dataSet);
   };
 
   const handleErrors = (response) => {
@@ -277,6 +277,7 @@ const App = () => {
                 <Add
                   beerData={beerData}
                   handleDisplayChange={handleDisplayChange}
+                  onBeverageAdded={dataSet}
                 />
               }
             />
