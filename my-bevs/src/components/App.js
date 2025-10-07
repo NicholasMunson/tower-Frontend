@@ -78,8 +78,22 @@ const App = () => {
   const dataSet = () => {
     setIsLoaded(false);
     Promise.all([
-      fetch(API_ENDPOINTS.BEER.GET()).then((response) => response.json()),
-      fetch(API_ENDPOINTS.WINE.GET()).then((response) => response.json()),
+      fetch(API_ENDPOINTS.BEER.GET()).then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Beer API error: ${response.status} ${response.statusText}`
+          );
+        }
+        return response.json();
+      }),
+      fetch(API_ENDPOINTS.WINE.GET()).then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Wine API error: ${response.status} ${response.statusText}`
+          );
+        }
+        return response.json();
+      }),
     ])
       .then(([beerResponse, wineResponse]) => {
         setBeerData(beerResponse.beer || []);
@@ -88,7 +102,14 @@ const App = () => {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setIsLoaded(true); // Set to true even on error to show UI
+        // Set empty data on error to show UI
+        setBeerData([]);
+        setWineData([]);
+        setIsLoaded(true);
+        // You could add a user-visible error message here
+        alert(
+          `Failed to load data: ${error.message}. Please check if the backend is running.`
+        );
       });
   };
 
@@ -104,11 +125,18 @@ const App = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response)
-      .then(handleErrors)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Delete failed: ${response.status} ${response.statusText}`
+          );
+        }
+        return response;
+      })
       .then(dataSet)
       .catch((error) => {
         console.error("Delete error:", error);
+        alert(`Failed to delete beer: ${error.message}`);
       });
   };
 
@@ -120,11 +148,18 @@ const App = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response)
-      .then(handleErrors)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Delete failed: ${response.status} ${response.statusText}`
+          );
+        }
+        return response;
+      })
       .then(dataSet)
       .catch((error) => {
         console.error("Delete error:", error);
+        alert(`Failed to delete wine: ${error.message}`);
       });
   };
 

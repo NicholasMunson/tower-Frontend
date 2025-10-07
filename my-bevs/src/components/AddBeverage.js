@@ -54,6 +54,14 @@ const AddBeverage = ({ type, onBeverageAdded, onNavigateToList }) => {
         "content-type": "application/json",
       }),
     })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Submission failed: ${response.status} ${response.statusText}`
+          );
+        }
+        return response;
+      })
       .then(() => {
         console.log("Submission successful");
         // Reset form after successful submission
@@ -78,6 +86,7 @@ const AddBeverage = ({ type, onBeverageAdded, onNavigateToList }) => {
       })
       .catch((err) => {
         console.error(err);
+        alert(`Failed to add ${type}: ${err.message}`);
       });
   };
 
