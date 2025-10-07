@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import Header from "./Header";
 import BeerList from "./BeerList";
 import WineList from "./WineList";
@@ -12,6 +17,34 @@ import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import { API_ENDPOINTS } from "../config/api";
 import "../styles/App.css";
 import PieChartHome from "./PieChartHome";
+
+// Wrapper component for Add route to use useNavigate hook
+const AddWrapper = ({ beerData, onBeverageAdded }) => {
+  const navigate = useNavigate();
+  const [currentTab, setCurrentTab] = useState("beer");
+
+  const handleNavigateToList = () => {
+    // Navigate to the appropriate list based on current tab
+    if (currentTab === "beer") {
+      navigate("/beer-list");
+    } else {
+      navigate("/wine-list");
+    }
+  };
+
+  const handleTabChange = (tab) => {
+    setCurrentTab(tab);
+  };
+
+  return (
+    <Add
+      beerData={beerData}
+      onBeverageAdded={onBeverageAdded}
+      onNavigateToList={handleNavigateToList}
+      onTabChange={handleTabChange}
+    />
+  );
+};
 
 const App = () => {
   const [beerData, setBeerData] = useState([]);
@@ -73,7 +106,10 @@ const App = () => {
     })
       .then((response) => response)
       .then(handleErrors)
-      .then(dataSet);
+      .then(dataSet)
+      .catch((error) => {
+        console.error("Delete error:", error);
+      });
   };
 
   const handleWineDelete = (event, id) => {
@@ -86,7 +122,10 @@ const App = () => {
     })
       .then((response) => response)
       .then(handleErrors)
-      .then(dataSet);
+      .then(dataSet)
+      .catch((error) => {
+        console.error("Delete error:", error);
+      });
   };
 
   const handleErrors = (response) => {
@@ -274,11 +313,7 @@ const App = () => {
             <Route
               path="/add"
               element={
-                <Add
-                  beerData={beerData}
-                  handleDisplayChange={handleDisplayChange}
-                  onBeverageAdded={dataSet}
-                />
+                <AddWrapper beerData={beerData} onBeverageAdded={dataSet} />
               }
             />
           </Routes>

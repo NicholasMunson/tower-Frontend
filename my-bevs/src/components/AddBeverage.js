@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { API_ENDPOINTS } from "../config/api";
 import "../styles/add.css";
 
-const AddBeverage = ({ type, onBeverageAdded }) => {
+const AddBeverage = ({ type, onBeverageAdded, onNavigateToList }) => {
   const isBeer = type === "beer";
 
   const [formData, setFormData] = useState({
@@ -19,6 +19,8 @@ const AddBeverage = ({ type, onBeverageAdded }) => {
     ABV: "",
     notes: "",
   });
+
+  const [addAnother, setAddAnother] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -68,6 +70,10 @@ const AddBeverage = ({ type, onBeverageAdded }) => {
         // Refresh the data in parent component
         if (onBeverageAdded) {
           onBeverageAdded();
+        }
+        // Navigate based on addAnother checkbox
+        if (!addAnother && onNavigateToList) {
+          onNavigateToList();
         }
       })
       .catch((err) => {
@@ -196,6 +202,19 @@ const AddBeverage = ({ type, onBeverageAdded }) => {
                 placeholder="Notes"
               />
             </Form.Group>
+
+            {/* Add Another Checkbox */}
+            <Form.Group className="mb-3">
+              <Form.Check
+                type="checkbox"
+                id="addAnother"
+                label="Add another beverage after submitting"
+                checked={addAnother}
+                onChange={(e) => setAddAnother(e.target.checked)}
+                className="add-another-checkbox"
+              />
+            </Form.Group>
+
             <Button type="submit" variant="primary" className="form-btn">
               Submit
             </Button>

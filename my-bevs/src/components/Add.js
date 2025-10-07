@@ -7,6 +7,10 @@ const Add = (props) => {
 
   const handleChangeDisplay = (newDisplay) => {
     setDisplay(newDisplay);
+    // Notify parent component about tab change
+    if (props.onTabChange) {
+      props.onTabChange(newDisplay);
+    }
   };
 
   return (
@@ -32,7 +36,11 @@ const Add = (props) => {
         </div>
 
         <div className="tab-content">
-          <AddBeverage type={display} onBeverageAdded={props.onBeverageAdded} />
+          <AddBeverage
+            type={display}
+            onBeverageAdded={props.onBeverageAdded}
+            onNavigateToList={props.onNavigateToList}
+          />
         </div>
       </div>
     </Fragment>

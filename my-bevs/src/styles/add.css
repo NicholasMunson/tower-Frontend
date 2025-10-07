@@ -181,6 +181,32 @@ textarea.form-control {
   }
 }
 
+/* Add Another Checkbox Styling */
+.add-another-checkbox {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.add-another-checkbox .form-check-input {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
+}
+
+.add-another-checkbox .form-check-label {
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.add-another-checkbox:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
 @media (max-width: 480px) {
   .tab-button {
     padding: 0.6rem 0.5rem;
@@ -190,5 +216,14 @@ textarea.form-control {
   .tab-content {
     margin: 0 2% 20px 2%;
     margin-top: 0;
+  }
+
+  .add-another-checkbox {
+    margin-top: 0.8rem;
+    padding: 0.4rem;
+  }
+
+  .add-another-checkbox .form-check-label {
+    font-size: 0.9rem;
   }
 }
