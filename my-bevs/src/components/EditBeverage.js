@@ -94,7 +94,6 @@ const EditBeverage = ({
       >
         <div className="form-content">
           <form onSubmit={handleSubmit}>
-            <h4 className="form-title">Edit your {isBeer ? "Beer" : "Wine"}</h4>
             <Form.Group className="mb-3">
               {getFormFields().map((field, index) => (
                 <Form.Control
@@ -133,7 +132,7 @@ const EditBeverage = ({
               Submit
             </Button>
             <Button
-              variant="primary"
+              variant="danger"
               className="form-btn"
               onClick={() => handleDisplayChangeBack("a")}
             >

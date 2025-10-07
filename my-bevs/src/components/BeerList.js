@@ -30,7 +30,7 @@ const BeerList = (props) => {
       key={beer.id}
       beverage={beer}
       type="beer"
-      handleDisplayChange={props.handleDisplayChange}
+      handleEditClick={props.handleEditClick}
       handleDelete={props.handleBeerDelete}
       handleUpdate={props.updateBevCard}
     />

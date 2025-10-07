@@ -7,7 +7,7 @@ import Add from "./Add";
 import Footer from "./Footer";
 import Home from "./Home";
 import About from "./About";
-import EditBeverage from "./EditBeverage";
+import EditModal from "./EditModal";
 import { API_ENDPOINTS } from "../config/api";
 import "../styles/App.css";
 import PieChartHome from "./PieChartHome";
@@ -17,6 +17,9 @@ const App = () => {
   const [wineData, setWineData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [display, setDisplay] = useState("a");
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingBeverage, setEditingBeverage] = useState(null);
+  const [editingType, setEditingType] = useState("beer");
   const [currentBeer, setCurrentBeer] = useState({
     brewery: "",
     name: "",
@@ -95,6 +98,17 @@ const App = () => {
 
   const handleDisplayChangeBack = () => {
     setDisplay("a");
+  };
+
+  const handleEditClick = (beverage, type) => {
+    setEditingBeverage(beverage);
+    setEditingType(type);
+    setShowEditModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowEditModal(false);
+    setEditingBeverage(null);
   };
 
   const handleChange = (event) => {
@@ -208,63 +222,58 @@ const App = () => {
             <Route
               path="/beer-list"
               element={
-                display === "a" ? (
-                  <BeerList
-                    beerData={beerData}
-                    isLoaded={isLoaded}
-                    handleDisplayChange={handleDisplayChange}
-                    handleBeerDelete={handleBeerDelete}
-                    updateBevCard={updateBevCard}
-                  />
-                ) : (
-                  <EditBeverage
-                    type="beer"
-                    currentBeverage={currentBeer}
-                    handleChange={handleChange}
-                    handleUpdate={handleUpdateBeerCard}
-                    handleDisplayChangeBack={handleDisplayChangeBack}
-                  />
-                )
+                <BeerList
+                  beerData={beerData}
+                  isLoaded={isLoaded}
+                  handleDisplayChange={handleDisplayChange}
+                  handleBeerDelete={handleBeerDelete}
+                  updateBevCard={updateBevCard}
+                  handleEditClick={handleEditClick}
+                />
               }
             />
             <Route
               path="/wine-list"
               element={
-                display === "a" ? (
-                  <WineList
-                    wineData={wineData}
-                    isLoaded={isLoaded}
-                    handleDisplayChange={handleDisplayChange}
-                    handleWineDelete={handleWineDelete}
-                    updateWineCard={updateWineCard}
-                  />
-                ) : (
-                  <EditBeverage
-                    type="wine"
-                    currentBeverage={currentWine}
-                    handleChange={handleChange}
-                    handleUpdate={handleUpdateWineCard}
-                    handleDisplayChangeBack={handleDisplayChangeBack}
-                  />
-                )
+                <WineList
+                  wineData={wineData}
+                  isLoaded={isLoaded}
+                  handleDisplayChange={handleDisplayChange}
+                  handleWineDelete={handleWineDelete}
+                  updateWineCard={updateWineCard}
+                  handleEditClick={handleEditClick}
+                />
               }
             />
             <Route
               path="/add"
               element={
-                display === "a" ? (
-                  <Add
-                    beerData={beerData}
-                    handleDisplayChange={handleDisplayChange}
-                  />
-                ) : (
-                  <BeerList />
-                )
+                <Add
+                  beerData={beerData}
+                  handleDisplayChange={handleDisplayChange}
+                />
               }
             />
           </Routes>
         </div>
         <Footer />
+
+        {/* Edit Modal */}
+        {editingBeverage && (
+          <EditModal
+            show={showEditModal}
+            onHide={handleCloseModal}
+            type={editingType}
+            currentBeverage={editingBeverage}
+            handleChange={handleChange}
+            handleUpdate={
+              editingType === "beer"
+                ? handleUpdateBeerCard
+                : handleUpdateWineCard
+            }
+            handleDisplayChangeBack={handleCloseModal}
+          />
+        )}
       </React.Fragment>
     </Router>
   );

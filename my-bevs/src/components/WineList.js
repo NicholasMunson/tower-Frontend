@@ -30,7 +30,7 @@ const WineList = (props) => {
       key={wine.id}
       beverage={wine}
       type="wine"
-      handleDisplayChange={props.handleDisplayChange}
+      handleEditClick={props.handleEditClick}
       handleDelete={props.handleWineDelete}
       handleUpdate={props.updateWineCard}
     />
