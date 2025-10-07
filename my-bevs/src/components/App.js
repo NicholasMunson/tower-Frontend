@@ -271,7 +271,6 @@ const App = () => {
         <div className="app-container">
           <Header />
           <Routes>
-            <Route path="/" element={<About />} />
             <Route
               path="/home"
               element={
@@ -316,6 +315,7 @@ const App = () => {
                 <AddWrapper beerData={beerData} onBeverageAdded={dataSet} />
               }
             />
+            <Route path="/" element={<About />} />
           </Routes>
         </div>
         <Footer />

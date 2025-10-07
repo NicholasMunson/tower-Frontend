@@ -11,9 +11,7 @@ const CustomNavBar = (props) => {
       <Menu right>
         <Link
           to="/"
-          className={`menu-item ${
-            location.pathname === "/" ? "active" : ""
-          }`}
+          className={`menu-item ${location.pathname === "/" ? "active" : ""}`}
         >
           About
         </Link>
