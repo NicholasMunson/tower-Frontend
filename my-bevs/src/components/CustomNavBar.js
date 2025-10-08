@@ -1,53 +1,69 @@
-import React, { Component } from 'react'
-import { Nav, NavItem } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import {slide as Menu} from 'react-burger-menu'
-import '../styles/hamburger.css'
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { slide as Menu } from "react-burger-menu";
+import "../styles/hamburger.css";
 
-class CustomNavBar extends Component {
+const CustomNavBar = (props) => {
+  const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    render() {
-        return (
-            <div className='header-container right'>
-                <Menu right >
-                    <Nav pullRight>
-                    <NavItem 
-                            eventKey={0} 
-                            componentClass={Link} 
-                            href='/home' 
-                            to='/home' 
-                            className='nav-item'>                 
-                            Home
-                        </NavItem>
-                        <NavItem 
-                            eventKey={1} 
-                            componentClass={Link} 
-                            href='/beer-list' 
-                            to='/beer-list' 
-                            className='nav-item'>                          
-                            BeerList
-                        </NavItem>
-                        <NavItem 
-                            eventKey={2} 
-                            componentClass={Link} 
-                            href='/wine-list' 
-                            to='/wine-list' 
-                            className='nav-item'>
-                            WineList
-                        </NavItem>
-                        <NavItem 
-                            eventKey={3} 
-                            componentClass={Link} 
-                            href='/add' to='/add' 
-                            className='nav-item'>
-                            Add-Bevs
-                        </NavItem>
-                    </Nav>
-                </Menu>
-            </div>
-        )
-    }
+  const handleMenuStateChange = (state) => {
+    setIsMenuOpen(state.isOpen);
+  };
 
-}
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
 
-export default CustomNavBar
+  return (
+    <div className="header-container right">
+      <Menu right isOpen={isMenuOpen} onStateChange={handleMenuStateChange}>
+        <Link
+          to="/"
+          className={`menu-item ${location.pathname === "/" ? "active" : ""}`}
+          onClick={handleLinkClick}
+        >
+          About
+        </Link>
+        <Link
+          to="/home"
+          className={`menu-item ${
+            location.pathname === "/home" ? "active" : ""
+          }`}
+          onClick={handleLinkClick}
+        >
+          Home
+        </Link>
+        <Link
+          to="/beer-list"
+          className={`menu-item ${
+            location.pathname === "/beer-list" ? "active" : ""
+          }`}
+          onClick={handleLinkClick}
+        >
+          BeerList
+        </Link>
+        <Link
+          to="/wine-list"
+          className={`menu-item ${
+            location.pathname === "/wine-list" ? "active" : ""
+          }`}
+          onClick={handleLinkClick}
+        >
+          WineList
+        </Link>
+        <Link
+          to="/add"
+          className={`menu-item ${
+            location.pathname === "/add" ? "active" : ""
+          }`}
+          onClick={handleLinkClick}
+        >
+          Add-Bevs
+        </Link>
+      </Menu>
+    </div>
+  );
+};
+
+export default CustomNavBar;

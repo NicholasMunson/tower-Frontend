@@ -1,29 +1,50 @@
-import React, {Component, Fragment} from 'react';
-import AddBeer from './AddBeer.js'
-import AddWine from './AddWine.js'
+import React, { Fragment, useState } from "react";
+import AddBeverage from "./AddBeverage.js";
+import "../styles/add.css";
 
+const Add = (props) => {
+  const [display, setDisplay] = useState("beer");
 
-class Add extends Component {
-    constructor(props){
-        super(props)
-        this.state ={
-            display: "a"
-        }
+  const handleChangeDisplay = (newDisplay) => {
+    setDisplay(newDisplay);
+    // Notify parent component about tab change
+    if (props.onTabChange) {
+      props.onTabChange(newDisplay);
     }
+  };
 
-    handleChangeDisplay = (display) => {
-        this.setState({display: display})
+  return (
+    <Fragment>
+      <div
+        className={`add-container ${
+          display === "beer" ? "beer-background" : "wine-background"
+        }`}
+      >
+        <div className="tab-navigation">
+          <button
+            className={`tab-button ${display === "beer" ? "active" : ""}`}
+            onClick={() => handleChangeDisplay("beer")}
+          >
+            Add Beer
+          </button>
+          <button
+            className={`tab-button ${display === "wine" ? "active" : ""}`}
+            onClick={() => handleChangeDisplay("wine")}
+          >
+            Add Wine
+          </button>
+        </div>
 
-    }
-    
-    render() {
-        let changeDisplay = this.state.display 
-        return (
-            <Fragment> 
-                { changeDisplay === "a" ? (<AddBeer handleChangeDisplay={this.handleChangeDisplay} handleDisplayChange={this.props.handleDisplayChange} />) :(<AddWine handleChangeDisplay={this.handleChangeDisplay} />) }
-            </Fragment>
-        )
-    }
-}
+        <div className="tab-content">
+          <AddBeverage
+            type={display}
+            onBeverageAdded={props.onBeverageAdded}
+            onNavigateToList={props.onNavigateToList}
+          />
+        </div>
+      </div>
+    </Fragment>
+  );
+};
 
-export default Add
+export default Add;

@@ -1,0 +1,169 @@
+.about-container {
+  margin-top: 55px;
+  height: 100%;
+  width: auto;
+  overflow: scroll;
+  background-image: url("./images/beer-and-wine.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-content {
+  text-align: center;
+  color: #333;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 25px;
+  padding: 25px;
+  width: 60%;
+  height: 70%;
+  font-family: "Rokkitt", serif;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    margin-top: 55px;
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .about-content {
+    width: 95%;
+    height: auto;
+    min-height: 80vh;
+    padding: 20px;
+    margin: 10px 0;
+  }
+
+  .about-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-content h2 {
+    font-size: 1.8rem;
+    margin: 1.5rem 0 0.8rem 0;
+  }
+
+  .about-content p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+
+  .about-content ul {
+    padding-left: 1rem;
+  }
+
+  .about-content li {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  .mobile-note {
+    padding: 0.8rem;
+    margin: 1rem 0;
+    font-size: 1.1rem;
+  }
+
+  .cta-section {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: 5px;
+  }
+
+  .about-content {
+    width: 98%;
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .about-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .about-content h2 {
+    font-size: 1.6rem;
+  }
+
+  .about-content p {
+    font-size: 1.1rem;
+  }
+
+  .about-content li {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+}
+
+.about-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  text-shadow: none;
+}
+
+.about-content h2 {
+  font-size: 2.2rem;
+  margin: 2rem 0 1rem 0;
+  color: #34495e;
+  text-shadow: none;
+}
+
+.about-content p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  text-shadow: none;
+}
+
+.about-content ul {
+  text-align: left;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.about-content li {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  text-shadow: none;
+  font-weight: 500;
+}
+
+.mobile-note {
+  background-color: rgba(255, 193, 7, 0.3);
+  border: 2px solid #ffc107;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  color: #856404;
+}
+
+.cta-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #bdc3c7;
+}
+
+.cta-section p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}

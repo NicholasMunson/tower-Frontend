@@ -1,60 +1,106 @@
 /* Position and sizing of burger button */
 .header-container {
-    display: flex;
-    justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .bm-burger-button {
-    display: flex;
-    position: fixed;
-    width: 36px;
-    height: 30px;
-    right: 3.5%;
-    top: 3.5%;
+  display: flex;
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  right: 3.5%;
+  top: 3.5%;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-    background: black;
+  background: white;
 }
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-    height: 24px;
-    width: 24px;
+  height: 24px;
+  width: 24px;
 }
 
 /* Color/shape of close button cross */
 .bm-cross {
-    background: #bdc3c7;
+  background: #bdc3c7;
 }
 
 /* General sidebar styles */
 .bm-menu {
-    background: #373a47;
-    padding: 2.5em 1.5em 0;
-    font-size: 1.15em;
+  background: rgb(38, 37, 37);
+  padding: 3em 2em 2em;
+  font-size: 1.15em;
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-    fill: #373a47;
+  fill: #373a47;
 }
 
 /* Wrapper for item list */
 .bm-item-list {
-    color: #b8b7ad;
-    padding: -0.2em;
+  color: #b8b7ad;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 /* Individual item */
 .bm-item {
-    display: inline-block;
+  display: block;
+  margin-bottom: 0;
 }
 
-a {
-    text-decoration-line: none;
-    color: white;
-    font-size: 3vmax;
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  text-decoration-line: none;
+  color: #ecf0f1;
+  font-size: 1.4em;
+  font-weight: 500;
+  padding: 1em 1.5em;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.5px;
 }
 
+.menu-item:hover,
+.menu-item:focus,
+.menu-item:active {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.menu-item.active {
+  background: linear-gradient(
+    135deg,
+    rgba(141, 141, 142, 0.15),
+    rgba(141, 133, 144, 0.15)
+  ) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2) !important;
+  border-left: 3px solid #ffffff !important;
+}
+
+/* Ensure non-active menu items don't have active styling */
+.menu-item:not(.active) {
+  background: transparent !important;
+  border-left: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .bm-burger-bars {
+    background: black;
+  }
+}
