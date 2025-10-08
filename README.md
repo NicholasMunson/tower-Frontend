@@ -41,7 +41,6 @@ This application has been recently modernized with:
 
    ```bash
    git clone <repository-url>
-   cd tower-Frontend
    cd my-bevs
    ```
 
